@@ -17,7 +17,7 @@
   margin-right: 10px;
 }
 
-.gallery {
+.portfolio__gallery {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -25,6 +25,6 @@
   grid-row-gap: 20px;
 }
 
-.gallery img {
+.portfolio__gallery img {
   width: 100%;
 }
