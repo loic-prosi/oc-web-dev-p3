@@ -2,8 +2,21 @@
 
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
+
+.portfolio__filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.portfolio__filters__button {
+  margin-right: 10px;
+}
+
 .gallery {
   width: 100%;
   display: grid;
