@@ -2,9 +2,22 @@
 
 #portfolio h2 {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
-.gallery {
+
+.portfolio__filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.portfolio__filters__button {
+  margin-right: 10px;
+}
+
+.portfolio__gallery {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -12,6 +25,6 @@
   grid-row-gap: 20px;
 }
 
-.gallery img {
+.portfolio__gallery img {
   width: 100%;
 }

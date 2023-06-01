@@ -132,6 +132,14 @@ table {
 /** end reset css**/
 
 :root {
+  --primary-color: #1d6154;
+  --primary-color-lighter-25: #33ab94;
+  --primary-color-darker-25: #16493f;
+
+  --secondary-color: #b1663c;
+  --secondary-color-lighter-25: #cb8a66;
+  --secondary-color-darker-25: #854c2d;
+
   --primary-bg-color: #fffef8;
   --secondary-bg-color: white;
 }
@@ -158,7 +166,7 @@ h1 {
   font-family: "Syne";
   font-size: 22px;
   font-weight: 800;
-  color: #b1663c;
+  color: var(--secondary-color);
 }
 
 h1 > span {
@@ -171,7 +179,7 @@ h2 {
   font-family: "Syne";
   font-weight: 700;
   font-size: 30px;
-  color: #1d6154;
+  color: var(--primary-color);
 }
 nav ul {
   display: flex;
@@ -184,16 +192,55 @@ nav li {
 }
 
 li:hover {
-  color: #b1663c;
+  color: var(--secondary-color);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+a:hover,
+a:focus,
+a:active {
+  font-weight: bold;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+a:active {
+  color: black;
 }
 
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
   color: white;
-  background-color: #1d6154;
+  background-color: var(--primary-color);
   margin: 2em auto;
   width: 180px;
   text-align: center;
   border-radius: 60px;
+}
+
+button {
+  height: 37px;
+  padding: 0 25px 0 25px;
+  font-family: "Syne";
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--primary-color);
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: 60px;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  color: white;
+  background-color: var(--primary-color);
 }

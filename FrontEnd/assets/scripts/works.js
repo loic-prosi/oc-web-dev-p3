@@ -6,6 +6,8 @@ export async function getAllWorks() {
 
 export function createWorkElement(work) {
   const workElement = document.createElement("figure");
+  workElement.className = "portfolio__gallery__work";
+  workElement.setAttribute("data-category", work.category.id);
 
   const imgElement = document.createElement("img");
   imgElement.src = work.imageUrl;
@@ -14,7 +16,7 @@ export function createWorkElement(work) {
   const figcaptionElement = document.createElement("figcaption");
   figcaptionElement.innerText = work.title;
 
-  const galleryElement = document.querySelector(".gallery");
+  const galleryElement = document.querySelector(".portfolio__gallery");
   galleryElement.appendChild(workElement);
 
   workElement.appendChild(imgElement);
