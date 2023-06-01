@@ -195,6 +195,26 @@ li:hover {
   color: var(--secondary-color);
 }
 
+a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+a:hover,
+a:focus,
+a:active {
+  font-weight: bold;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+a:active {
+  color: black;
+}
+
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
