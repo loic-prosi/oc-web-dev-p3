@@ -1,19 +1,15 @@
 import { createWorkElement } from "./works.js";
 
 export function getWorksCategories(works) {
-  const categories = works.map((work) => work.category);
+  const uniqueCategoriesIds = new Set();
+  works.forEach((work) => uniqueCategoriesIds.add(work.category.id));
 
-  let uniqueCategories = categories.filter((value, index) => {
-    const _value = JSON.stringify(value);
-    return (
-      index ===
-      categories.findIndex((obj) => {
-        return JSON.stringify(obj) === _value;
-      })
-    );
+  // Array with initial category "0" for displaying all works ("All" button)
+  let uniqueCategories = [{ id: 0, name: "Tous" }];
+  uniqueCategoriesIds.forEach((id) => {
+    const work = works.find((work) => work.category.id === id);
+    uniqueCategories.push(work.category);
   });
-  // New category "0" for displaying all works ("All" button)
-  uniqueCategories.unshift({ id: "0", name: "Tous" });
 
   return uniqueCategories;
 }
@@ -24,10 +20,10 @@ export function createCategoryButtonElement(category, works) {
   categoryElement.innerText = category.name;
   categoryElement.addEventListener("click", async function () {
     let worksFiltered = works.filter((work) => {
-      return work.category.id === parseInt(category.id);
+      return work.category.id === category.id;
     });
     // If clicked filter is "all" use the initial works array
-    if (category.id === "0") {
+    if (category.id === 0) {
       worksFiltered = works;
     }
     // Refresh gallery with filtered works
