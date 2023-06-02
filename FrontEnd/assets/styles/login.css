@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  margin-top: 0;
 }
 
 .login-section__form {
@@ -23,4 +24,9 @@
 
 .login-section__form__submit {
   height: 50px;
+}
+
+.login-section__link {
+  color: var(--text-color);
+  text-decoration: underline;
 }

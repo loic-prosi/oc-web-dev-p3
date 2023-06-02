@@ -2,6 +2,7 @@
 
 .footer {
   height: 60px;
+  margin-top: auto;
   background-color: var(--secondary-bg-color);
 }
 
