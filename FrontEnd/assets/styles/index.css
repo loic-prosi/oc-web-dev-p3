@@ -1,5 +1,7 @@
 @import url("main.css");
 
+@import url("navigation.css");
+@import url("login.css");
 @import url("introduction.css");
 @import url("portfolio.css");
 @import url("contact.css");

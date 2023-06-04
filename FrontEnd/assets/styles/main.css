@@ -142,20 +142,27 @@ table {
 
   --primary-bg-color: #fffef8;
   --secondary-bg-color: white;
+
+  --text-color: #3d3d3d;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   max-width: 1140px;
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
   background-color: var(--primary-bg-color);
 }
+
 header {
   display: flex;
   justify-content: space-between;
   margin: 50px 0;
 }
+
 section {
   margin: 50px 0;
 }
@@ -181,11 +188,18 @@ h2 {
   font-size: 30px;
   color: var(--primary-color);
 }
+
+p,
+figcaption {
+  color: var(--text-color);
+}
+
 nav ul {
   display: flex;
   align-items: center;
   list-style-type: none;
 }
+
 nav li {
   padding: 0 10px;
   font-size: 1.2em;
@@ -215,15 +229,46 @@ a:active {
   color: black;
 }
 
+label {
+  margin: 2.5em 0 0.5em 0;
+  color: var(--text-color);
+}
+
+input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding-left: 12px;
+}
+
 input[type="submit"] {
   font-family: "Syne";
   font-weight: 700;
   color: white;
   background-color: var(--primary-color);
   margin: 2em auto;
+  padding-left: 0px;
   width: 180px;
   text-align: center;
   border-radius: 60px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+  color: white;
+  background-color: var(--primary-color-lighter-25);
+}
+
+input[type="submit"]:active {
+  background-color: var(--primary-color-darker-25);
+}
+
+textarea {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 12px;
 }
 
 button {
