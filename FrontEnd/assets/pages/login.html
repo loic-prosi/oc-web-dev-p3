@@ -35,15 +35,30 @@
     <main>
       <section class="login-section">
         <h2 class="login-section__title">Log In</h2>
-
-        <form class="login-section__form">
+        <form method="post" class="login-section__form">
           <div class="login-section__form__item">
-            <label class="login-section__form__item__label">E-mail</label>
-            <input class="login-section__form__item__input" autofocus/ >
+            <label for="email" class="login-section__form__item__label"
+              >E-mail</label
+            >
+            <input class="login-section__form__item__input" type="email"
+            id="email" name="email" required autofocus/ >
+            <span
+              id="email-error"
+              class="login-section__form__item__error"
+              aria-live="polite"
+            ></span>
           </div>
           <div class="login-section__form__item">
-            <label class="login-section__form__item__label">Mot de passe</label>
-            <input class="login-section__form__item__input"/ >
+            <label for="password" class="login-section__form__item__label"
+              >Mot de passe</label
+            >
+            <input class="login-section__form__item__input" type="password"
+            minlength="6" id="password" name="password" required/ >
+            <span
+              id="password-error"
+              class="login-section__form__item__error"
+              aria-live="polite"
+            ></span>
           </div>
           <input
             type="submit"
