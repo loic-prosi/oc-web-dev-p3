@@ -22,6 +22,11 @@
   width: 100%;
 }
 
+.login-section__form__item__error {
+  margin-top: 10px;
+  color: red;
+}
+
 .login-section__form__submit {
   height: 50px;
 }
