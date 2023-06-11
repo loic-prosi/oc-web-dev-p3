@@ -85,12 +85,10 @@ function removePorfolioFilters() {
   portfolioFiltersParent.removeChild(portfolioFilters);
 }
 
-function updateIntroductionArticleStyles() {
+function updatePageStyles() {
   let introductionArticle = document.querySelector(".introduction__article");
   introductionArticle.className = "introduction__article--edition";
-}
 
-function updatePorfolioTitleStyles() {
   let portfolioTitle = document.querySelector(".portfolio__title");
   portfolioTitle.className = "portfolio__title--edition";
 }
@@ -98,7 +96,6 @@ function updatePorfolioTitleStyles() {
 export function setEditionState() {
   createEditionBarElement();
   createEditionButtonsElements();
-  updateIntroductionArticleStyles();
   removePorfolioFilters();
-  updatePorfolioTitleStyles();
+  updatePageStyles();
 }
