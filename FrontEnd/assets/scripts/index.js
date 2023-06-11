@@ -3,6 +3,7 @@ import {
   getWorksCategories,
   createCategoryButtonElement
 } from "./categories.js";
+import { setEditionState } from "./edition.js";
 
 async function renderElements() {
   const works = await getAllWorks();
@@ -16,6 +17,11 @@ async function renderElements() {
   categories.forEach((category) => {
     createCategoryButtonElement(category, works);
   });
+
+  const authToken = window.localStorage.getItem("architect.authToken");
+  if (authToken) {
+    setEditionState();
+  }
 }
 
 renderElements();

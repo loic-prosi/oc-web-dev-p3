@@ -1,25 +1,33 @@
 /* Introduction section */
 
-#introduction {
+.introduction {
   display: flex;
   align-items: center;
 }
-#introduction figure {
+
+.introduction figure {
   flex: 1;
 }
-#introduction img {
+
+.introduction img {
   display: block;
   margin: auto;
   width: 80%;
 }
 
-#introduction article {
+.introduction__article {
   flex: 1;
 }
-#introduction h2 {
+
+.introduction__article--edition {
+  flex: 1;
+  padding-bottom: 47px;
+}
+
+.introduction h2 {
   margin-bottom: 1em;
 }
 
-#introduction p {
+.introduction p {
   margin-bottom: 0.5em;
 }
