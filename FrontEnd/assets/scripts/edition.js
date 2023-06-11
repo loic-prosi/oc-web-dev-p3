@@ -28,7 +28,8 @@ function createEditionBarElement() {
 
 function createEditionButtonElement(
   buttonContainerClassName,
-  buttonContainerParentSelector
+  buttonContainerParentSelector,
+  isFirstChild
 ) {
   let buttonContainer = document.createElement("div");
   buttonContainer.className = buttonContainerClassName;
@@ -48,7 +49,11 @@ function createEditionButtonElement(
     buttonContainerParentSelector
   );
 
-  buttonContainerParent.appendChild(buttonContainer);
+  if (isFirstChild) {
+    buttonContainerParent.prepend(buttonContainer);
+  } else {
+    buttonContainerParent.appendChild(buttonContainer);
+  }
   buttonContainer.appendChild(button);
   button.appendChild(buttonImg);
   button.appendChild(buttonText);
@@ -61,7 +66,8 @@ function createEditionButtonsElements() {
   );
   createEditionButtonElement(
     "edition-button-container--introduction__article",
-    ".introduction article"
+    ".introduction article",
+    true
   );
   createEditionButtonElement(
     "edition-button-container--portfolio",
@@ -79,15 +85,20 @@ function removePorfolioFilters() {
   portfolioFiltersParent.removeChild(portfolioFilters);
 }
 
+function updateIntroductionArticleStyles() {
+  let introductionArticle = document.querySelector(".introduction__article");
+  introductionArticle.className = "introduction__article--edition";
+}
+
 function updatePorfolioTitleStyles() {
   let portfolioTitle = document.querySelector(".portfolio__title");
-  portfolioTitle.style.marginLeft = "132px";
-  portfolioTitle.style.marginBottom = "100px";
+  portfolioTitle.className = "portfolio__title--edition";
 }
 
 export function setEditionState() {
   createEditionBarElement();
   createEditionButtonsElements();
+  updateIntroductionArticleStyles();
   removePorfolioFilters();
   updatePorfolioTitleStyles();
 }
