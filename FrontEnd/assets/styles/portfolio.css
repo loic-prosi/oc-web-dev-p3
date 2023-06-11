@@ -7,6 +7,14 @@
   margin-bottom: 40px;
 }
 
+.portfolio__title--edition {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+  margin-left: 132px;
+}
+
 .portfolio__filters {
   display: flex;
   justify-content: center;
