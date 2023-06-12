@@ -247,13 +247,14 @@ input:focus {
 }
 
 input[type="submit"] {
+  height: 36px;
+  font-size: 14px;
   font-family: "Syne";
   font-weight: 700;
   color: white;
   background-color: var(--primary-color);
   margin: 2em auto;
-  padding-left: 0px;
-  width: 180px;
+  padding: 0px 40px;
   text-align: center;
   border-radius: 60px;
   cursor: pointer;
