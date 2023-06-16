@@ -5,9 +5,9 @@ function createEditionBarElement() {
   const editionBarElement = document.createElement("div");
   editionBarElement.className = "edition-bar";
 
-  const editionBarIconElement = document.createElement("img");
-  editionBarIconElement.className = "edition-bar__icon";
-  editionBarIconElement.src = "./assets/icons/edit-white.svg";
+  const editionBarIconElement = document.createElement("i");
+  editionBarIconElement.className =
+    "edition-bar__icon fa-regular fa-pen-to-square";
 
   const editionBarTextElement = document.createElement("p");
   editionBarTextElement.className = "edition-bar__text";
