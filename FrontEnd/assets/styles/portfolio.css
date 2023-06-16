@@ -38,3 +38,7 @@
 .portfolio__gallery img {
   width: 100%;
 }
+
+.portfolio__gallery__work figcaption {
+  margin-top: 5px;
+}
