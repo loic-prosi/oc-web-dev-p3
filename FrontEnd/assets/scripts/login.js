@@ -1,5 +1,5 @@
 async function renderElements() {
-  let form = document.querySelector(".login-section__form");
+  const form = document.querySelector(".login-section__form");
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -20,14 +20,14 @@ async function renderElements() {
         location.replace("../../index.html");
       }
 
-      let emailInput = document.querySelector("input[name='email']");
+      const emailInput = document.querySelector("input[name='email']");
       emailInput.style.outline = "";
 
-      let passwordInput = document.querySelector("input[name='password']");
+      const passwordInput = document.querySelector("input[name='password']");
       passwordInput.style.outline = "";
 
-      let emailErrorMessage = document.querySelector("#email-error");
-      let passWordErrorMessage = document.querySelector("#password-error");
+      const emailErrorMessage = document.querySelector("#email-error");
+      const passWordErrorMessage = document.querySelector("#password-error");
 
       if (response.message) {
         emailInput.style.outline = "2px solid red";

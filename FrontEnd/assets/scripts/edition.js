@@ -2,25 +2,25 @@ import { createModalWorkElement } from "./works.js";
 import { createModalFormCategoryOption } from "./categories.js";
 
 function createEditionBarElement() {
-  let editionBarElement = document.createElement("div");
+  const editionBarElement = document.createElement("div");
   editionBarElement.className = "edition-bar";
 
-  let editionBarIconElement = document.createElement("img");
+  const editionBarIconElement = document.createElement("img");
   editionBarIconElement.className = "edition-bar__icon";
   editionBarIconElement.src = "./assets/icons/edit-white.svg";
 
-  let editionBarTextElement = document.createElement("p");
+  const editionBarTextElement = document.createElement("p");
   editionBarTextElement.className = "edition-bar__text";
   editionBarTextElement.innerText = "Mode édition";
 
-  let editionBarButtonElement = document.createElement("button");
+  const editionBarButtonElement = document.createElement("button");
   editionBarButtonElement.className = "edition-bar__button";
   editionBarButtonElement.innerText = "publier les changements";
   editionBarButtonElement.addEventListener("click", function () {
     location.reload();
   });
 
-  let headerElement = document.querySelector("header");
+  const headerElement = document.querySelector("header");
   headerElement.className = "edition-bar-offset";
   headerElement.appendChild(editionBarElement);
 
@@ -35,23 +35,25 @@ function createEditionLink(
   url,
   isFirstChild
 ) {
-  let linkContainer = document.createElement("div");
+  const linkContainer = document.createElement("div");
   linkContainer.className = linkContainerClassName;
 
-  let link = document.createElement("a");
+  const link = document.createElement("a");
   if (url) {
     link.href = url;
   }
   link.className = "edition-link";
 
-  let linkIcon = document.createElement("i");
+  const linkIcon = document.createElement("i");
   linkIcon.className = "edition-link__icon fa-regular fa-pen-to-square";
 
-  let linkText = document.createElement("span");
+  const linkText = document.createElement("span");
   linkText.className = "edition-link__text";
   linkText.innerText = "modifier";
 
-  let linkContainerParent = document.querySelector(linkContainerParentSelector);
+  const linkContainerParent = document.querySelector(
+    linkContainerParentSelector
+  );
 
   if (isFirstChild) {
     linkContainerParent.prepend(linkContainer);
@@ -82,16 +84,16 @@ function createEditionButtonsElements() {
 }
 
 function createModalEvents() {
-  let editionButton = document.querySelector(
+  const editionButton = document.querySelector(
     ".edition-link-container--portfolio .edition-link"
   );
   // Open the modal when clicking on the portfolio "Edit" button
   editionButton.addEventListener("click", function () {
-    let modal = document.getElementById("modal");
+    const modal = document.getElementById("modal");
     modal.showModal();
   });
 
-  let modal = document.getElementById("modal");
+  const modal = document.getElementById("modal");
   // Close the modal when pressing "Esc" button
   modal.addEventListener("cancel", function () {
     modal.close();
@@ -99,10 +101,10 @@ function createModalEvents() {
   // Close the modal when clicking outside it
   modal.addEventListener("click", (event) => {
     // Get target element position information in the viewport
-    let targetRect = event.target.getBoundingClientRect();
+    const targetRect = event.target.getBoundingClientRect();
     // If one of the mouse cursor coordinates is outside the target, the modal is closed
     // The coordinates are calculated from the top left of the viewport
-    let cursorOutsideTarget =
+    const cursorOutsideTarget =
       targetRect.left > event.clientX ||
       targetRect.right < event.clientX ||
       targetRect.top > event.clientY ||
@@ -113,7 +115,7 @@ function createModalEvents() {
     }
   });
   // Close the modal when clicking on the close icon
-  let closeButtons = document.querySelectorAll(
+  const closeButtons = document.querySelectorAll(
     ".modal__content__navigation__close-button"
   );
   closeButtons.forEach((closeButton) => {
@@ -141,26 +143,26 @@ function createModalEvents() {
 }
 
 function removePorfolioFilters() {
-  let portfolioFiltersParent = document.querySelector(
+  const portfolioFiltersParent = document.querySelector(
     ".portfolio__filters"
   ).parentElement;
 
-  let portfolioFilters = document.querySelector(".portfolio__filters");
+  const portfolioFilters = document.querySelector(".portfolio__filters");
 
   portfolioFiltersParent.removeChild(portfolioFilters);
 }
 
 function updatePageStyles() {
-  let introductionArticle = document.querySelector(".introduction__article");
+  const introductionArticle = document.querySelector(".introduction__article");
   introductionArticle.className = "introduction__article--edition";
 
-  let portfolioTitle = document.querySelector(".portfolio__title");
+  const portfolioTitle = document.querySelector(".portfolio__title");
   portfolioTitle.className = "portfolio__title--edition";
 }
 
 export function setEditionState(works, categories) {
   // Original categories contains all the categories except the "all" one
-  let originalCategories = categories.slice(1);
+  const originalCategories = categories.slice(1);
   createEditionBarElement();
   createEditionButtonsElements();
   createModalEvents();
