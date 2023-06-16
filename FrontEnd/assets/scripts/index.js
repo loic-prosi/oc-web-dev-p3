@@ -20,7 +20,7 @@ async function renderElements() {
 
   const authToken = window.localStorage.getItem("architect.authToken");
   if (authToken) {
-    setEditionState();
+    setEditionState(works, categories);
   }
 }
 
