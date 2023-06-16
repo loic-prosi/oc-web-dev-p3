@@ -45,41 +45,40 @@
   border-color: white;
 }
 
-.edition-button-container--introduction__figure {
+.edition-link-container--introduction__figure {
+  display: flex;
   width: 80%;
   margin: auto;
   margin-top: 5px;
 }
 
-.edition-button-container--introduction__article {
+.edition-link-container--introduction__article {
   width: 100%;
   margin-bottom: 10px;
 }
 
-.edition-button-container--portfolio {
+.edition-link-container--portfolio {
   width: 100px;
   margin-left: 32px;
 }
 
-.edition-button,
-.edition-button:hover,
-.edition-button:focus,
-.edition-button:active {
-  display: flex;
-  align-items: center;
-  padding: 0;
+.edition-link,
+.edition-link:hover,
+.edition-link:focus,
+.edition-link:active {
   font-family: "Work Sans";
   font-weight: normal;
   color: black;
-  background: none;
-  border: none;
-  border-radius: 0;
 }
 
-.edition-button:hover {
+.edition-link:hover {
   text-decoration: underline;
 }
 
-.edition-button__text {
-  margin-left: 10px;
+.edition-link__icon {
+  font-size: 18px;
+}
+
+.edition-link__text {
+  margin-left: 8px;
 }

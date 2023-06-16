@@ -1,0 +1,65 @@
+/* Form */
+
+.form__item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form__item--image-upload {
+  align-items: center;
+  padding: 20px 0 7px 0;
+}
+.form__item--image-upload > i {
+  font-size: 58px;
+  color: #b9c5cc;
+  margin-top: 5px;
+}
+.form__item--image-upload input {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  width: 170px;
+  box-shadow: none;
+  padding: 0;
+  margin-top: 15px;
+  background-color: #cbd6dc;
+  border-radius: 50px;
+}
+.form__item--image-upload input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.form__item--image-upload input::before {
+  padding: 11px 30px 10px 30px;
+  content: "+ Ajouter photo";
+  font-family: "Work Sans";
+  font-size: 14px;
+  color: #306685;
+  box-shadow: none;
+  cursor: pointer;
+}
+.form__item--image-upload p {
+  margin-top: 10px;
+  font-size: 10px;
+  color: #444444;
+}
+
+.form__item__select {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  border-right: 12px solid transparent;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding-left: 12px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.form__item__error {
+  margin-top: 10px;
+  color: red;
+}
+
+.form__submit {
+  height: 50px;
+}

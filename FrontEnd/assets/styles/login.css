@@ -16,21 +16,6 @@
   margin: auto;
 }
 
-.login-section__form__item {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.login-section__form__item__error {
-  margin-top: 10px;
-  color: red;
-}
-
-.login-section__form__submit {
-  height: 50px;
-}
-
 .login-section__link {
   color: var(--text-color);
   text-decoration: underline;
