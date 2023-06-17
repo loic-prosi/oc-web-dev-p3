@@ -144,6 +144,8 @@ table {
   --secondary-bg-color: white;
 
   --text-color: #3d3d3d;
+
+  --danger-color: #d65353;
 }
 
 body {
@@ -246,26 +248,32 @@ input:focus {
   outline: 2px solid black;
 }
 
-input[type="submit"] {
+input[type="submit"],
+.modal__content__button__add-photo {
+  height: 36px;
+  font-size: 14px;
   font-family: "Syne";
   font-weight: 700;
   color: white;
   background-color: var(--primary-color);
+  border: none;
   margin: 2em auto;
-  padding-left: 0px;
-  width: 180px;
+  padding: 0px 40px;
   text-align: center;
   border-radius: 60px;
   cursor: pointer;
 }
 
 input[type="submit"]:hover,
-input[type="submit"]:focus {
+.modal__content__button__add-photo:hover,
+input[type="submit"]:focus,
+.modal__content__button__add-photo:focus {
   color: white;
   background-color: var(--primary-color-lighter-25);
 }
 
-input[type="submit"]:active {
+input[type="submit"]:active,
+.modal__content__button__add-photo:active {
   background-color: var(--primary-color-darker-25);
 }
 

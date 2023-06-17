@@ -37,3 +37,12 @@ export function createCategoryButtonElement(category, works) {
   const filtersElement = document.querySelector(".portfolio__filters");
   filtersElement.appendChild(categoryElement);
 }
+
+export function createModalFormCategoryOption(category) {
+  const categoryOption = document.createElement("option");
+  categoryOption.value = category.id;
+  categoryOption.innerText = category.name;
+
+  const select = document.getElementById("category");
+  select.appendChild(categoryOption);
+}
