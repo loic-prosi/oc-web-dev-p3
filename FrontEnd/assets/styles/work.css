@@ -1,0 +1,39 @@
+.work {
+  margin: 0;
+}
+.work--modal {
+  width: 15%;
+  flex-grow: 1;
+  cursor: pointer;
+}
+.work--modal:hover {
+  font-weight: normal;
+  text-decoration: underline;
+}
+/* Prevent last item in gallery to use all width */
+.work--modal:last-child {
+  flex-grow: 0;
+}
+
+.work__image-container {
+  position: relative;
+  width: fit-content;
+  height: 100px;
+}
+
+.work__image {
+  width: 100%;
+}
+.work__image--modal {
+  height: 100px;
+}
+
+.work__title {
+  margin-top: 5px;
+  color: var(--text-color);
+}
+.work__title--modal {
+  margin-top: 3px;
+  font-size: 12px;
+  color: black;
+}

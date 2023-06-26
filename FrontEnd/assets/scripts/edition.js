@@ -14,14 +14,14 @@ function createEditionBarElement() {
   editionBarTextElement.innerText = "Mode édition";
 
   const editionBarButtonElement = document.createElement("button");
-  editionBarButtonElement.className = "edition-bar__button";
+  editionBarButtonElement.className = "button button--edition-bar";
   editionBarButtonElement.innerText = "publier les changements";
   editionBarButtonElement.addEventListener("click", function () {
     location.reload();
   });
 
-  const headerElement = document.querySelector("header");
-  headerElement.className = "edition-bar-offset";
+  const headerElement = document.querySelector(".header");
+  headerElement.classList.add("edition-bar-offset");
   headerElement.appendChild(editionBarElement);
 
   editionBarElement.appendChild(editionBarIconElement);
@@ -30,25 +30,22 @@ function createEditionBarElement() {
 }
 
 function createEditionLink(
-  linkContainerClassName,
+  buttonLinkClassName,
   linkContainerParentSelector,
   url,
   isFirstChild
 ) {
-  const linkContainer = document.createElement("div");
-  linkContainer.className = linkContainerClassName;
-
   const link = document.createElement("a");
   if (url) {
     link.href = url;
   }
-  link.className = "edition-link";
+  link.className = `button-link ${buttonLinkClassName}`;
 
   const linkIcon = document.createElement("i");
-  linkIcon.className = "edition-link__icon fa-regular fa-pen-to-square";
+  linkIcon.className = "button-link__icon fa-regular fa-pen-to-square";
 
   const linkText = document.createElement("span");
-  linkText.className = "edition-link__text";
+  linkText.className = "button-link__text";
   linkText.innerText = "modifier";
 
   const linkContainerParent = document.querySelector(
@@ -56,37 +53,34 @@ function createEditionLink(
   );
 
   if (isFirstChild) {
-    linkContainerParent.prepend(linkContainer);
+    linkContainerParent.prepend(link);
   } else {
-    linkContainerParent.appendChild(linkContainer);
+    linkContainerParent.appendChild(link);
   }
-  linkContainer.appendChild(link);
   link.appendChild(linkIcon);
   link.appendChild(linkText);
 }
 
 function createEditionButtonsElements() {
   createEditionLink(
-    "edition-link-container--introduction__figure",
-    ".introduction figure"
+    "button-link--introduction-figure",
+    ".section--introduction figure"
   );
   createEditionLink(
-    "edition-link-container--introduction__article",
-    ".introduction article",
+    "button-link--introduction-article",
+    ".section--introduction article",
     null,
     true
   );
   createEditionLink(
-    "edition-link-container--portfolio",
-    ".portfolio__title",
+    "button-link--portfolio",
+    ".section__title-container--portfolio",
     "#modal-gallery"
   );
 }
 
 function createModalEvents() {
-  const editionButton = document.querySelector(
-    ".edition-link-container--portfolio .edition-link"
-  );
+  const editionButton = document.querySelector(".button-link--portfolio");
   // Open the modal when clicking on the portfolio "Edit" button
   editionButton.addEventListener("click", function () {
     const modal = document.getElementById("modal");
@@ -115,9 +109,7 @@ function createModalEvents() {
     }
   });
   // Close the modal when clicking on the close icon
-  const closeButtons = document.querySelectorAll(
-    ".modal__content__navigation__close-button"
-  );
+  const closeButtons = document.querySelectorAll(".button--modal-nav-close");
   closeButtons.forEach((closeButton) => {
     closeButton.addEventListener("click", function () {
       modal.close();
@@ -129,7 +121,7 @@ function createModalEvents() {
   inputPhoto.addEventListener("change", function (event) {
     if (event && event.target && event.target.files && event.target.files[0]) {
       const photoPreview = document.createElement("img");
-      photoPreview.className = ".form__item--image-upload img";
+      photoPreview.className = ".form__item--image-upload";
       photoPreview.style.height = "171px";
       photoPreview.src = URL.createObjectURL(event.target.files[0]);
 
@@ -143,21 +135,22 @@ function createModalEvents() {
 }
 
 function removePorfolioFilters() {
-  const portfolioFiltersParent = document.querySelector(
-    ".portfolio__filters"
-  ).parentElement;
+  const portfolioFiltersParent =
+    document.querySelector(".section__filters").parentElement;
 
-  const portfolioFilters = document.querySelector(".portfolio__filters");
+  const portfolioFilters = document.querySelector(".section__filters");
 
   portfolioFiltersParent.removeChild(portfolioFilters);
 }
 
 function updatePageStyles() {
-  const introductionArticle = document.querySelector(".introduction__article");
-  introductionArticle.className = "introduction__article--edition";
+  const introductionArticle = document.querySelector(".section__article");
+  introductionArticle.classList.add("section__article--edition");
 
-  const portfolioTitle = document.querySelector(".portfolio__title");
-  portfolioTitle.className = "portfolio__title--edition";
+  const portfolioTitle = document.querySelector(
+    ".section__title-container--portfolio"
+  );
+  portfolioTitle.classList.add("section__title-container--portfolio-edition");
 }
 
 export function setEditionState(works, categories) {

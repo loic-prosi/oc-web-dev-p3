@@ -1,307 +1,56 @@
 /* Global styles */
 
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-/** end reset css**/
-
 :root {
   --primary-color: #1d6154;
-  --primary-color-lighter-25: #33ab94;
-  --primary-color-darker-25: #16493f;
-
-  --secondary-color: #b1663c;
-  --secondary-color-lighter-25: #cb8a66;
-  --secondary-color-darker-25: #854c2d;
+  --primary-color-hover: #0e2f28;
+  --primary-color-active: black;
 
   --primary-bg-color: #fffef8;
-  --secondary-bg-color: white;
+
+  --button-bg-disabled: #a7a7a7;
+
+  --logo-color: #b1663c;
 
   --text-color: #3d3d3d;
 
   --danger-color: #d65353;
+
+  --footer-bg-color: white;
+
+  --modal-separator-color: #b3b3b3;
+  --modal-image-bg-color: #e8f1f6;
 }
 
-body {
+.page {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  max-width: 1140px;
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
   background-color: var(--primary-bg-color);
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  margin: 50px 0;
-}
-
-section {
-  margin: 50px 0;
-}
-
-h1 {
+.page__content {
   display: flex;
   flex-direction: column;
-  font-family: "Syne";
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--secondary-color);
+  width: 100%;
+  max-width: 1140px;
+  margin: 75px auto 0px auto;
 }
 
-h1 > span {
-  font-family: "Work Sans";
-  font-size: 10px;
-  letter-spacing: 0.1em;
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  margin: 20px auto 0px auto;
 }
 
-h2 {
-  font-family: "Syne";
-  font-weight: 700;
-  font-size: 30px;
-  color: var(--primary-color);
-}
-
-p,
-figcaption {
-  color: var(--text-color);
-}
-
-nav ul {
+.footer {
   display: flex;
   align-items: center;
-  list-style-type: none;
-}
-
-nav li {
-  padding: 0 10px;
-  font-size: 1.2em;
-}
-
-li:hover {
-  color: var(--secondary-color);
-}
-
-a {
-  text-decoration: none;
-  color: black;
-  cursor: pointer;
-}
-
-a:hover,
-a:focus,
-a:active {
-  font-weight: bold;
-}
-
-a:hover {
-  color: var(--secondary-color);
-}
-
-a:active {
-  color: black;
-}
-
-label {
-  margin: 2.5em 0 0.5em 0;
-  color: var(--text-color);
-}
-
-input {
-  height: 50px;
-  font-size: 1.2em;
-  border: none;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-  padding-left: 12px;
-}
-
-input:focus {
-  outline: 2px solid black;
-}
-
-input[type="submit"],
-.modal__content__button__add-photo {
-  height: 36px;
-  font-size: 14px;
-  font-family: "Syne";
-  font-weight: 700;
-  color: white;
-  background-color: var(--primary-color);
-  border: none;
-  margin: 2em auto;
-  padding: 0px 40px;
-  text-align: center;
-  border-radius: 60px;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover,
-.modal__content__button__add-photo:hover,
-input[type="submit"]:focus,
-.modal__content__button__add-photo:focus {
-  color: white;
-  background-color: var(--primary-color-lighter-25);
-}
-
-input[type="submit"]:active,
-.modal__content__button__add-photo:active {
-  background-color: var(--primary-color-darker-25);
-}
-
-textarea {
-  border: none;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-  padding: 12px;
-}
-
-textarea:focus {
-  outline: 2px solid black;
-}
-
-button {
-  height: 37px;
-  padding: 0 25px 0 25px;
-  font-family: "Syne";
-  font-weight: bold;
-  font-size: 16px;
-  color: var(--primary-color);
-  background-color: transparent;
-  border: 1px solid var(--primary-color);
-  border-radius: 60px;
-  cursor: pointer;
-}
-
-button:hover,
-button:focus {
-  color: white;
-  background-color: var(--primary-color);
+  height: 60px;
+  margin-top: auto;
+  background-color: var(--footer-bg-color);
 }

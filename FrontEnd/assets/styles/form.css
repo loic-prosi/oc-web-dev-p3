@@ -1,4 +1,12 @@
-/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+}
+.form--modal {
+  margin-top: 40px;
+}
 
 .form__item {
   display: flex;
@@ -9,13 +17,26 @@
 .form__item--image-upload {
   align-items: center;
   padding: 20px 0 7px 0;
+  background-color: var(--modal-image-bg-color);
 }
-.form__item--image-upload > i {
-  font-size: 58px;
-  color: #b9c5cc;
-  margin-top: 5px;
+
+.form__label {
+  margin: 2.5em 0 0.5em 0;
+  color: var(--text-color);
 }
-.form__item--image-upload input {
+
+.form__input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding-left: 12px;
+}
+.form__input:focus {
+  outline: 2px solid black;
+}
+
+.form__input--image-upload {
   display: flex;
   align-items: center;
   height: 36px;
@@ -26,10 +47,10 @@
   background-color: #cbd6dc;
   border-radius: 50px;
 }
-.form__item--image-upload input::-webkit-file-upload-button {
+.form__input--image-upload::-webkit-file-upload-button {
   visibility: hidden;
 }
-.form__item--image-upload input::before {
+.form__input--image-upload::before {
   padding: 11px 30px 10px 30px;
   content: "+ Ajouter photo";
   font-family: "Work Sans";
@@ -38,13 +59,17 @@
   box-shadow: none;
   cursor: pointer;
 }
-.form__item--image-upload p {
-  margin-top: 10px;
-  font-size: 10px;
-  color: #444444;
+
+.form__textarea {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 12px;
+}
+.form__textarea:focus {
+  outline: 2px solid black;
 }
 
-.form__item__select {
+.form__select {
   height: 50px;
   font-size: 1.2em;
   border: none;
@@ -55,11 +80,25 @@
   background-color: white;
 }
 
-.form__item__error {
-  margin-top: 10px;
-  color: red;
+.form__icon {
+  font-size: 58px;
 }
 
-.form__submit {
-  height: 50px;
+.form__icon--image-upload {
+  color: #b9c5cc;
+  margin-top: 5px;
+}
+
+.form__hint {
+  font-size: 10px;
+}
+
+.form__hint--image-upload {
+  margin-top: 10px;
+  color: #444444;
+}
+
+.form__error {
+  margin-top: 10px;
+  color: red;
 }

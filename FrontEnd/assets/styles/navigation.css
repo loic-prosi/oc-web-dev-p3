@@ -1,5 +1,15 @@
-/* Navigation */
+.navigation {
+  display: flex;
+  align-items: center;
+}
 
-.navigation__list__link--login-page {
-  font-weight: bold;
+.navigation--header {
+  flex-grow: 1;
+}
+
+.navigation--footer {
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0px auto;
 }

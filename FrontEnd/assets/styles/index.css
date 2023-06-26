@@ -1,11 +1,13 @@
 @import url("main.css");
 
-@import url("form.css");
-@import url("edition.css");
+@import url("button.css");
+@import url("logo.css");
 @import url("navigation.css");
-@import url("login.css");
-@import url("introduction.css");
-@import url("portfolio.css");
-@import url("contact.css");
-@import url("footer.css");
+@import url("menu.css");
+@import url("section.css");
+@import url("work.css");
+@import url("form.css");
+
 @import url("modal.css");
+
+@import url("edition.css");

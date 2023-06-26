@@ -1,7 +1,7 @@
 /* Edition elements */
 
 .edition-bar-offset {
-  margin-top: 100px;
+  margin-top: 75px;
 }
 
 .edition-bar {
@@ -16,70 +16,12 @@
   background-color: black;
   color: white;
 }
-
 .edition-bar__icon {
   margin-right: 10px;
   font-size: 19px;
 }
-
 .edition-bar__text {
   margin-right: 20px;
   color: white;
   font-size: 16px;
-}
-
-.edition-bar__button {
-  font-size: 14px;
-  font-family: "Work Sans";
-  color: black;
-  background-color: white;
-  border-color: white;
-}
-
-.edition-bar__button:hover,
-.edition-bar__button:focus,
-.edition-bar__button:active {
-  font-size: 14px;
-  font-family: "Work Sans";
-  color: black;
-  background-color: white;
-  border-color: white;
-}
-
-.edition-link-container--introduction__figure {
-  display: flex;
-  width: 80%;
-  margin: auto;
-  margin-top: 5px;
-}
-
-.edition-link-container--introduction__article {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.edition-link-container--portfolio {
-  width: 100px;
-  margin-left: 32px;
-}
-
-.edition-link,
-.edition-link:hover,
-.edition-link:focus,
-.edition-link:active {
-  font-family: "Work Sans";
-  font-weight: normal;
-  color: black;
-}
-
-.edition-link:hover {
-  text-decoration: underline;
-}
-
-.edition-link__icon {
-  font-size: 18px;
-}
-
-.edition-link__text {
-  margin-left: 8px;
 }

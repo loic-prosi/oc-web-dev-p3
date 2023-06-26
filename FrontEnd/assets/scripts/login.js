@@ -1,5 +1,5 @@
 async function renderElements() {
-  const form = document.querySelector(".login-section__form");
+  const form = document.querySelector(".form--login");
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();

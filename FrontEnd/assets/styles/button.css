@@ -1,0 +1,148 @@
+/* Button */
+.button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 36px;
+  padding: 0px 40px;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: var(--primary-color);
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button--primary {
+  margin: 2em auto;
+}
+.button--primary:hover,
+.button--primary:focus {
+  color: white;
+  background-color: var(--primary-color-hover);
+}
+.button--primary:active {
+  background-color: var(--primary-color-active);
+}
+.button--primary:disabled {
+  background-color: var(--button-bg-disabled);
+  cursor: not-allowed;
+}
+
+.button--filter {
+  height: 37px;
+  padding: 0px 25px;
+  margin-right: 10px;
+  font-size: 16px;
+  color: var(--primary-color);
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+}
+.button--filter:hover,
+.button--filter:focus {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.button--edition-bar {
+  padding: 0px 25px;
+  font-family: "Work Sans";
+  color: black;
+  background-color: white;
+  border-color: white;
+}
+
+.button--modal-nav,
+.button--modal-nav:hover,
+.button--modal-nav:active,
+.button--modal-nav:focus {
+  height: 20px;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  color: black;
+  padding: 0;
+}
+.button--modal-nav-close {
+  transform: translateX(55px);
+}
+.button--modal-nav-previous {
+  transform: translateX(-55px);
+}
+
+.button--modal-work,
+.button--modal-work:hover,
+.button--modal-work:focus,
+.button--modal-work:active {
+  align-items: center;
+  position: absolute;
+  top: 5px;
+  width: 17px;
+  height: 17px;
+  font-size: 9px;
+  padding: 0px;
+  color: white;
+  background-color: black;
+  border-radius: 3px;
+}
+.button--modal-work-delete {
+  right: 5px;
+}
+
+/* Link button */
+.button-link,
+.button-link:hover,
+.button-link:focus,
+.button-link:active {
+  text-decoration: none;
+  font-family: "Work Sans";
+  font-weight: normal;
+  color: black;
+  cursor: pointer;
+}
+.button-link:hover {
+  text-decoration: underline;
+}
+.button-link__icon {
+  font-size: 18px;
+}
+.button-link__text {
+  margin-left: 8px;
+}
+
+.button-link--forgot-password {
+  color: var(--text-color);
+  text-decoration: underline;
+}
+.button-link--forgot-password:hover {
+  font-weight: bold;
+}
+
+.button-link--delete,
+.button-link--delete:hover,
+.button-link--delete:active,
+.button-link--delete:focus {
+  font-family: "Syne";
+  font-size: 14px;
+  color: var(--danger-color);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.button-link--delete:hover {
+  text-decoration: underline;
+}
+
+.button-link--introduction-figure {
+  display: block;
+  width: 80%;
+  margin-top: 10px;
+}
+.button-link--portfolio {
+  width: 100px;
+  margin-left: 32px;
+}

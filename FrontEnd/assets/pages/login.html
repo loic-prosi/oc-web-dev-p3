@@ -10,63 +10,86 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/ad34cd1af4.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
     <meta name="description" content="" />
     <link rel="stylesheet" href="../styles/index.css" />
     <script type="module" src="../scripts/login.js"></script>
   </head>
-  <body>
-    <header>
-      <a href="../../index.html"
-        ><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a
-      >
-      <nav class="navigation">
-        <ul>
-          <li><a href="../../index.html#portfolio">projets</a></li>
-          <li><a href="../../index.html#contact">contact</a></li>
-          <li class="navigation__list__link--login-page">
-            <a href="./login.html">login</a>
+  <body class="page">
+    <header class="header">
+      <nav class="navigation navigation--header">
+        <a class="logo" href="../../index.html"
+          ><h1 class="logo__title">
+            Sophie Bluel
+            <span class="logo__subtitle">Architecte d'intérieur</span>
+          </h1></a
+        >
+        <ul class="menu">
+          <li class="menu__item">
+            <a class="menu__link" href="../../index.html#portfolio">projets</a>
           </li>
-          <li><img src="../icons/instagram.png" alt="Instagram" /></li>
+          <li class="menu__item">
+            <a class="menu__link" href="../../index.html#contact">contact</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link menu__link--login-page" href="./login.html"
+              >login</a
+            >
+          </li>
+          <li class="menu__item">
+            <i class="menu__icon fa-brands fa-instagram"></i>
+          </li>
         </ul>
       </nav>
     </header>
 
-    <main>
-      <section class="login-section">
-        <h2 class="login-section__title">Log In</h2>
-        <form method="post" class="login-section__form">
+    <main class="page__content">
+      <section class="section section--login">
+        <h2 class="section__title">Log In</h2>
+        <form method="post" class="form form--login">
           <div class="form__item">
-            <label for="email" class="form__item__label">E-mail</label>
-            <input class="form__item__input" type="email" id="email"
-            name="email" required autofocus/ >
+            <label for="email" class="form__label">E-mail</label>
+            <input class="form__input" type="email" id="email" name="email"
+            required autofocus/ >
             <span
               id="email-error"
-              class="form__item__error"
+              class="form__error"
               aria-live="polite"
             ></span>
           </div>
           <div class="form__item">
-            <label for="password" class="form__item__label">Mot de passe</label>
-            <input class="form__item__input" type="password" minlength="6"
+            <label for="password" class="form__label">Mot de passe</label>
+            <input class="form__input" type="password" minlength="6"
             id="password" name="password" required/ >
             <span
               id="password-error"
-              class="form__item__error"
+              class="form__error"
               aria-live="polite"
             ></span>
           </div>
-          <input type="submit" class="form__submit" value="Se connecter" />
+          <input
+            type="submit"
+            class="button button--primary"
+            value="Se connecter"
+          />
         </form>
 
-        <a class="login-section__link">Mot de passe oublié</a>
+        <a class="button-link button-link--forgot-password"
+          >Mot de passe oublié</a
+        >
       </section>
     </main>
 
     <footer class="footer">
-      <nav>
-        <ul>
-          <li><a href="#">Mentions Légales</a></li>
+      <nav class="navigation navigation--footer">
+        <ul class="menu">
+          <li class="menu__item">
+            <a class="menu__link" href="#">Mentions Légales</a>
+          </li>
         </ul>
       </nav>
     </footer>

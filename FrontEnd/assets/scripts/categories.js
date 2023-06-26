@@ -16,7 +16,7 @@ export function getWorksCategories(works) {
 
 export function createCategoryButtonElement(category, works) {
   const categoryElement = document.createElement("button");
-  categoryElement.className = "portfolio__filters__button";
+  categoryElement.className = "button button--filter";
   categoryElement.innerText = category.name;
   categoryElement.addEventListener("click", async function () {
     let worksFiltered = works.filter((work) => {
@@ -27,14 +27,14 @@ export function createCategoryButtonElement(category, works) {
       worksFiltered = works;
     }
     // Refresh gallery with filtered works
-    const galleryElement = document.querySelector(".portfolio__gallery");
+    const galleryElement = document.querySelector(".section__gallery");
     galleryElement.innerHTML = "";
     worksFiltered.forEach((work) => {
       createWorkElement(work);
     });
   });
 
-  const filtersElement = document.querySelector(".portfolio__filters");
+  const filtersElement = document.querySelector(".section__filters");
   filtersElement.appendChild(categoryElement);
 }
 

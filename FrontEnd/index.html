@@ -19,70 +19,105 @@
     <link rel="stylesheet" href="./assets/styles/index.css" />
     <script type="module" src="./assets/scripts/index.js"></script>
   </head>
-  <body>
-    <header>
-      <a href="./index.html"
-        ><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a
-      >
-      <nav class="navigation">
-        <ul>
-          <li><a href="#portfolio">projets</a></li>
-          <li><a href="#contact">contact</a></li>
-          <li><a href="./assets/pages/login.html">login</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+  <body class="page">
+    <header class="header">
+      <nav class="navigation navigation--header">
+        <a class="logo" href="./index.html"
+          ><h1 class="logo__title">
+            Sophie Bluel
+            <span class="logo__subtitle">Architecte d'intérieur</span>
+          </h1></a
+        >
+        <ul class="menu">
+          <li class="menu__item">
+            <a class="menu__link" href="#portfolio">projets</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="#contact">contact</a>
+          </li>
+          <li class="menu__item">
+            <a class="menu__link" href="./assets/pages/login.html">login</a>
+          </li>
+          <li class="menu__item">
+            <i class="menu__icon fa-brands fa-instagram"></i>
+          </li>
         </ul>
       </nav>
     </header>
-    <main>
-      <section class="introduction">
-        <figure>
-          <img src="./assets/images/sophie-bluel.png" alt="" />
+
+    <main class="page__content">
+      <section class="section section--introduction">
+        <figure class="section__figure">
+          <img
+            class="section__image"
+            src="./assets/images/sophie-bluel.png"
+            alt="Sophie Bluel"
+          />
         </figure>
-        <article class="introduction__article">
-          <h2>Designer d'espace</h2>
-          <p>
+        <article class="section__article">
+          <h2 class="section__title section__title--introduction">
+            Designer d'espace
+          </h2>
+          <p class="section__text">
             Je raconte votre histoire, je valorise vos idées. Je vous accompagne
             de la conception à la livraison finale du chantier.
           </p>
-          <p>
+          <p class="section__text">
             Chaque projet sera étudié en commun, de façon à mettre en valeur les
             volumes, les matières et les couleurs dans le respect de l’esprit
             des lieux et le choix adapté des matériaux. Le suivi du chantier
             sera assuré dans le souci du détail, le respect du planning et du
             budget.
           </p>
-          <p>
+          <p class="section__text">
             En cas de besoin, une équipe pluridisciplinaire peut-être constituée
             : architecte DPLG, décorateur(trice)
           </p>
         </article>
       </section>
-      <section id="portfolio" class="portfolio">
-        <div class="portfolio__title">
-          <h2>Mes Projets</h2>
+      <section id="portfolio" class="section section--portfolio">
+        <div
+          class="section__title-container section__title-container--portfolio"
+        >
+          <h2 class="section__title section__title--portfolio">Mes Projets</h2>
         </div>
-        <div class="portfolio__filters"></div>
-        <div class="portfolio__gallery"></div>
+        <div class="section__filters"></div>
+        <div class="section__gallery"></div>
       </section>
-      <section id="contact" class="contact">
-        <h2>Contact</h2>
-        <p>Vous avez un projet ? Discutons-en !</p>
-        <form action="#" method="post">
-          <label for="name">Nom</label>
-          <input type="text" name="name" id="name" />
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
-          <label for="message">Message</label>
-          <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Envoyer" />
+      <section id="contact" class="section section--contact">
+        <h2 class="section__title section__title--contact">Contact</h2>
+        <p class="section__subtitle">Vous avez un projet ? Discutons-en !</p>
+        <form class="form form--contact" action="#" method="post">
+          <div class="form__item">
+            <label class="form__label" for="name">Nom</label>
+            <input class="form__input" type="text" name="name" id="name" />
+          </div>
+          <div class="form__item">
+            <label class="form__label" for="email">Email</label>
+            <input class="form__input" type="email" name="email" id="email" />
+          </div>
+
+          <div class="form__item">
+            <label class="form__label" for="message">Message</label>
+            <textarea
+              class="form__textarea"
+              name="message"
+              id="message"
+              cols="30"
+              rows="10"
+            ></textarea>
+          </div>
+          <input class="button button--primary" type="submit" value="Envoyer" />
         </form>
       </section>
     </main>
 
     <footer class="footer">
-      <nav>
-        <ul>
-          <li><a href="#">Mentions Légales</a></li>
+      <nav class="navigation navigation--footer">
+        <ul class="menu">
+          <li class="menu__item">
+            <a class="menu__link" href="#">Mentions Légales</a>
+          </li>
         </ul>
       </nav>
     </footer>
@@ -91,82 +126,79 @@
   <dialog class="modal" id="modal">
     <div class="modal__tabs">
       <div id="modal-gallery" class="modal__content">
-        <div
-          class="modal__content__navigation modal__content__navigation--modal-gallery"
-        >
-          <button class="modal__content__navigation__close-button">
+        <div class="modal__navigation modal__navigation--gallery">
+          <button class="button button--modal-nav button--modal-nav-close">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-        <h2 class="modal__content__title">Galerie photo</h2>
-        <div class="modal__content__portfolio-gallery"></div>
-        <hr class="modal__content__separation" />
-        <a href="#modal-form" class="modal__content__button__add-photo"
+        <h2 class="modal__title">Galerie photo</h2>
+        <div class="modal__gallery"></div>
+        <hr class="modal__separation" />
+        <a href="#modal-form" class="button button--primary"
           >Ajouter une photo</a
         >
-        <button class="modal__content__button__delete">
+        <button class="button-link button-link--delete">
           Supprimer la galerie
         </button>
       </div>
       <div id="modal-form" class="modal__content">
-        <div
-          class="modal__content__navigation modal__content__navigation--modal-form"
-        >
+        <div class="modal__navigation modal__navigation--form">
           <a
             href="#modal-gallery"
-            class="modal__content__navigation__previous-button"
+            class="button button--modal-nav button--modal-nav-previous"
           >
             <i class="fa-solid fa-arrow-left"></i>
           </a>
-          <button class="modal__content__navigation__close-button">
+          <button class="button button--modal-nav button--modal-nav-close">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-        <h2 class="modal__content__title">Ajout photo</h2>
-        <form method="post" class="modal__content__form">
+        <h2 class="modal__title">Ajout photo</h2>
+        <form method="post" class="form form--modal">
           <div class="form__item form__item--image-upload">
-            <i class="fa-regular fa-image"></i>
-            <img />
+            <i
+              class="form__icon form__icon--image-upload fa-regular fa-image"
+            ></i>
+            <img class="form__image form__image--image-upload" />
             <input
+              class="form__input form__input--image-upload"
               type="file"
               id="photo"
               name="photo"
               accept="image/png, image/jpeg"
             />
-            <p>jpg, png : 4mo max</p>
+            <p class="form__hint form__hint--image-upload">
+              jpg, png : 4mo max
+            </p>
             <span
               id="photo-error"
-              class="form__item__error"
+              class="form__error"
               aria-live="polite"
             ></span>
           </div>
           <div class="form__item">
-            <label for="title" class="form__item__label">Title</label>
-            <input class="form__item__input" id="title" name="title" required
+            <label for="title" class="form__label">Title</label>
+            <input class="form__input" id="title" name="title" required
             autofocus/ >
             <span
               id="title-error"
-              class="form__item__error"
+              class="form__error"
               aria-live="polite"
             ></span>
           </div>
           <div class="form__item">
-            <label for="category" class="form__item__label">Catégorie</label>
-            <select
-              class="form__item__select"
-              name="category"
-              id="category"
-            ></select>
+            <label for="category" class="form__label">Catégorie</label>
+            <select class="form__select" name="category" id="category"></select>
             <span
               id="category-error"
-              class="form__item__error"
+              class="form__error"
               aria-live="polite"
             ></span>
           </div>
-          <hr class="modal__content__separation" />
+          <hr class="modal__separation" />
           <input
             type="submit"
-            class="modal__content__form__submit"
+            class="button button--primary"
             value="Valider"
             disabled
           />
