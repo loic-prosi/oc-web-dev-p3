@@ -27,13 +27,13 @@ export function createWorkElement(work) {
 
 export function createModalWorkElement(work) {
   const modalWorkElement = document.createElement("a");
-  modalWorkElement.className = "work--modal";
+  modalWorkElement.className = "work work--modal";
 
   const modalWorkImgContainer = document.createElement("div");
   modalWorkImgContainer.className = "work__image-container";
 
   const imgElement = document.createElement("img");
-  imgElement.className = "work__image--modal";
+  imgElement.className = "work__image work__image--modal";
   imgElement.src = work.imageUrl;
   imgElement.alt = work.title;
 
@@ -44,7 +44,7 @@ export function createModalWorkElement(work) {
   deleteIconElement.className = "fa-solid fa-trash-can";
 
   const modalFigcaptionElement = document.createElement("figcaption");
-  modalFigcaptionElement.className = "work__title--modal";
+  modalFigcaptionElement.className = "work__title work__title--modal";
   modalFigcaptionElement.innerText = "éditer";
 
   const galleryElement = document.querySelector(".modal__gallery");

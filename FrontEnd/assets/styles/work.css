@@ -25,6 +25,7 @@
   width: 100%;
 }
 .work__image--modal {
+  width: fit-content;
   height: 100px;
 }
 
