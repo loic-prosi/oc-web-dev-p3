@@ -1,5 +1,9 @@
-.logo {
+.logo-container {
+  display: flex;
   flex-grow: 1;
+}
+
+.logo {
   text-decoration: none;
   margin-left: 20px;
 }
