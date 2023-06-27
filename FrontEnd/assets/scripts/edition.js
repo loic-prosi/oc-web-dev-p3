@@ -17,6 +17,7 @@ function createEditionBarElement() {
   editionBarButtonElement.className = "button button--edition-bar";
   editionBarButtonElement.innerText = "publier les changements";
   editionBarButtonElement.addEventListener("click", function () {
+    window.localStorage.removeItem("architect.authToken");
     location.reload();
   });
 
