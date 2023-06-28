@@ -2,30 +2,24 @@
   margin: 0;
 }
 .work--modal {
-  width: 15%;
-  flex-grow: 1;
   cursor: pointer;
 }
 .work--modal:hover {
   font-weight: normal;
   text-decoration: underline;
 }
-/* Prevent last item in gallery to use all width */
-.work--modal:last-child {
-  flex-grow: 0;
-}
 
 .work__image-container {
   position: relative;
-  width: fit-content;
   height: 100px;
 }
 
 .work__image {
   width: 100%;
+  height: 490px;
+  object-fit: cover;
 }
 .work__image--modal {
-  width: fit-content;
   height: 100px;
 }
 
