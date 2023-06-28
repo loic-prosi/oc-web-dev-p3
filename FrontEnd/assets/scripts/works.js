@@ -7,6 +7,7 @@ export async function getAllWorks() {
 export function createWorkElement(work) {
   const workElement = document.createElement("figure");
   workElement.className = "work";
+  workElement.setAttribute("data-id", work.id);
   workElement.setAttribute("data-category", work.category.id);
 
   const imgElement = document.createElement("img");
@@ -28,6 +29,7 @@ export function createWorkElement(work) {
 export function createModalWorkElement(work) {
   const modalWorkElement = document.createElement("a");
   modalWorkElement.className = "work work--modal";
+  modalWorkElement.setAttribute("data-id-modal", work.id);
 
   const modalWorkImgContainer = document.createElement("div");
   modalWorkImgContainer.className = "work__image-container";
@@ -42,6 +44,34 @@ export function createModalWorkElement(work) {
     "button button--modal-work button--modal-work-delete";
   const deleteIconElement = document.createElement("i");
   deleteIconElement.className = "fa-solid fa-trash-can";
+
+  deleteButtonElement.addEventListener("click", async function (event) {
+    const authToken = window.localStorage.getItem("architect.authToken");
+    if (authToken) {
+      const response = await fetch(
+        `http://localhost:5678/api/works/${work.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`
+          }
+        }
+      );
+      if (response && response.status && response.status === 204) {
+        const workElement = document.querySelector(`[data-id="${work.id}"]`);
+        const modalWorkElement = document.querySelector(
+          `[data-id-modal="${work.id}"]`
+        );
+
+        const galleryElement = document.querySelector(".section__gallery");
+        const modalGalleryElement = document.querySelector(".modal__gallery");
+
+        galleryElement.removeChild(workElement);
+        modalGalleryElement.removeChild(modalWorkElement);
+      }
+    }
+  });
 
   const modalFigcaptionElement = document.createElement("figcaption");
   modalFigcaptionElement.className = "work__title work__title--modal";
