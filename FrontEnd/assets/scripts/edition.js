@@ -1,34 +1,33 @@
-import { createWorkElement, createModalWorkElement } from "./works.js";
-import { createModalFormCategoryOption } from "./categories.js";
+import { createWork, createModalWork } from "./works.js";
+import { removeFilters, createSelectCategoryOption } from "./categories.js";
 import { checkInput } from "./form.js";
 
-const createEditionBarElement = () => {
-  const editionBarElement = document.createElement("div");
-  editionBarElement.className = "edition-bar";
+const createEditionBar = () => {
+  const editionBar = document.createElement("div");
+  editionBar.className = "edition-bar";
 
-  const editionBarIconElement = document.createElement("i");
-  editionBarIconElement.className =
-    "edition-bar__icon fa-regular fa-pen-to-square";
+  const editionBarIcon = document.createElement("i");
+  editionBarIcon.className = "edition-bar__icon fa-regular fa-pen-to-square";
 
-  const editionBarTextElement = document.createElement("p");
-  editionBarTextElement.className = "edition-bar__text";
-  editionBarTextElement.innerText = "Mode édition";
+  const editionBarText = document.createElement("p");
+  editionBarText.className = "edition-bar__text";
+  editionBarText.innerText = "Mode édition";
 
-  const editionBarButtonElement = document.createElement("button");
-  editionBarButtonElement.className = "button button--edition-bar";
-  editionBarButtonElement.innerText = "publier les changements";
-  editionBarButtonElement.addEventListener("click", () => {
+  const editionBarButton = document.createElement("button");
+  editionBarButton.className = "button button--edition-bar";
+  editionBarButton.innerText = "publier les changements";
+  editionBarButton.addEventListener("click", () => {
     window.localStorage.removeItem("architect.authToken");
     location.reload();
   });
 
-  const headerElement = document.querySelector(".header");
-  headerElement.classList.add("edition-bar-offset");
-  headerElement.appendChild(editionBarElement);
+  const header = document.querySelector(".header");
+  header.classList.add("edition-bar-offset");
+  header.appendChild(editionBar);
 
-  editionBarElement.appendChild(editionBarIconElement);
-  editionBarElement.appendChild(editionBarTextElement);
-  editionBarElement.appendChild(editionBarButtonElement);
+  editionBar.appendChild(editionBarIcon);
+  editionBar.appendChild(editionBarText);
+  editionBar.appendChild(editionBarButton);
 };
 
 const createEditionLink = (
@@ -63,7 +62,7 @@ const createEditionLink = (
   link.appendChild(linkText);
 };
 
-const createEditionButtonsElements = () => {
+const createEditionButtons = () => {
   createEditionLink(
     "button-link--introduction-figure",
     ".section--introduction figure"
@@ -209,21 +208,12 @@ const createModalEvents = () => {
           title: response.title,
           userId: response.userId
         };
-        createWorkElement(work);
-        createModalWorkElement(work);
+        createWork(work);
+        createModalWork(work);
         location.replace("#" + "modal-gallery");
       }
     }
   });
-};
-
-const removePorfolioFilters = () => {
-  const portfolioFiltersParent =
-    document.querySelector(".section__filters").parentElement;
-
-  const portfolioFilters = document.querySelector(".section__filters");
-
-  portfolioFiltersParent.removeChild(portfolioFilters);
 };
 
 const updatePageStyles = () => {
@@ -239,15 +229,15 @@ const updatePageStyles = () => {
 export const setEditionState = (works, categories) => {
   // Original categories contains all the categories except the "all" one
   const originalCategories = categories.slice(1);
-  createEditionBarElement();
-  createEditionButtonsElements();
+  createEditionBar();
+  createEditionButtons();
   createModalEvents();
   works.forEach((work) => {
-    createModalWorkElement(work);
+    createModalWork(work);
   });
   originalCategories.forEach((category) => {
-    createModalFormCategoryOption(category);
+    createSelectCategoryOption(category);
   });
-  removePorfolioFilters();
+  removeFilters();
   updatePageStyles();
 };

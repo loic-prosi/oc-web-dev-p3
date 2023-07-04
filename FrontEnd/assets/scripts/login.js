@@ -1,4 +1,4 @@
-const renderElements = async () => {
+const render = async () => {
   const form = document.querySelector(".form--login");
 
   form.addEventListener("submit", async (event) => {
@@ -51,4 +51,4 @@ const renderElements = async () => {
   });
 };
 
-renderElements();
+render();

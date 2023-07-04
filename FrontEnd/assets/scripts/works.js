@@ -4,48 +4,56 @@ export const getAllWorks = async () => {
   return works;
 };
 
-export const createWorkElement = (work) => {
-  const workElement = document.createElement("figure");
-  workElement.className = "work";
-  workElement.setAttribute("data-id", work.id);
-  workElement.setAttribute("data-category", work.category.id);
-
-  const imgElement = document.createElement("img");
-  imgElement.className = "work__image";
-  imgElement.src = work.imageUrl;
-  imgElement.alt = work.title;
-
-  const figcaptionElement = document.createElement("figcaption");
-  figcaptionElement.className = "work__title";
-  figcaptionElement.innerText = work.title;
-
-  const galleryElement = document.querySelector(".section__gallery");
-  galleryElement.appendChild(workElement);
-
-  workElement.appendChild(imgElement);
-  workElement.appendChild(figcaptionElement);
+export const createGallery = (works) => {
+  const gallery = document.querySelector(".section__gallery");
+  gallery.innerHTML = "";
+  works.forEach((work) => {
+    createWork(work);
+  });
 };
 
-export const createModalWorkElement = (work) => {
-  const modalWorkElement = document.createElement("a");
-  modalWorkElement.className = "work work--modal";
-  modalWorkElement.setAttribute("data-id-modal", work.id);
+export const createWork = (work) => {
+  const galleryWork = document.createElement("figure");
+  galleryWork.className = "work";
+  galleryWork.setAttribute("data-id", work.id);
+  galleryWork.setAttribute("data-category", work.category.id);
 
-  const modalWorkImgContainer = document.createElement("div");
-  modalWorkImgContainer.className = "work__image-container";
+  const workImage = document.createElement("img");
+  workImage.className = "work__image";
+  workImage.src = work.imageUrl;
+  workImage.alt = work.title;
 
-  const imgElement = document.createElement("img");
-  imgElement.className = "work__image work__image--modal";
-  imgElement.src = work.imageUrl;
-  imgElement.alt = work.title;
+  const workTitle = document.createElement("figcaption");
+  workTitle.className = "work__title";
+  workTitle.innerText = work.title;
 
-  const deleteButtonElement = document.createElement("button");
-  deleteButtonElement.className =
+  const gallery = document.querySelector(".section__gallery");
+  gallery.appendChild(galleryWork);
+
+  galleryWork.appendChild(workImage);
+  galleryWork.appendChild(workTitle);
+};
+
+export const createModalWork = (work) => {
+  const modalWork = document.createElement("a");
+  modalWork.className = "work work--modal";
+  modalWork.setAttribute("data-id-modal", work.id);
+
+  const modalWorkImageContainer = document.createElement("div");
+  modalWorkImageContainer.className = "work__image-container";
+
+  const modalWorkImage = document.createElement("img");
+  modalWorkImage.className = "work__image work__image--modal";
+  modalWorkImage.src = work.imageUrl;
+  modalWorkImage.alt = work.title;
+
+  const modalWorkDeleteButton = document.createElement("button");
+  modalWorkDeleteButton.className =
     "button button--modal-work button--modal-work-delete";
-  const deleteIconElement = document.createElement("i");
-  deleteIconElement.className = "fa-solid fa-trash-can";
+  const modalWorkDeleteIcon = document.createElement("i");
+  modalWorkDeleteIcon.className = "fa-solid fa-trash-can";
 
-  deleteButtonElement.addEventListener("click", async (event) => {
+  modalWorkDeleteButton.addEventListener("click", async (event) => {
     const authToken = window.localStorage.getItem("architect.authToken");
     if (authToken) {
       const response = await fetch(
@@ -59,29 +67,29 @@ export const createModalWorkElement = (work) => {
         }
       );
       if (response && response.status && response.status === 204) {
-        const workElement = document.querySelector(`[data-id="${work.id}"]`);
-        const modalWorkElement = document.querySelector(
+        const galleryWork = document.querySelector(`[data-id="${work.id}"]`);
+        const modalWork = document.querySelector(
           `[data-id-modal="${work.id}"]`
         );
 
-        const galleryElement = document.querySelector(".section__gallery");
-        const modalGalleryElement = document.querySelector(".modal__gallery");
+        const gallery = document.querySelector(".section__gallery");
+        const modalGallery = document.querySelector(".modal__gallery");
 
-        galleryElement.removeChild(workElement);
-        modalGalleryElement.removeChild(modalWorkElement);
+        gallery.removeChild(galleryWork);
+        modalGallery.removeChild(modalWork);
       }
     }
   });
 
-  const modalFigcaptionElement = document.createElement("figcaption");
-  modalFigcaptionElement.className = "work__title work__title--modal";
-  modalFigcaptionElement.innerText = "éditer";
+  const modalWorkTitle = document.createElement("figcaption");
+  modalWorkTitle.className = "work__title work__title--modal";
+  modalWorkTitle.innerText = "éditer";
 
-  const galleryElement = document.querySelector(".modal__gallery");
-  galleryElement.appendChild(modalWorkElement);
-  modalWorkElement.appendChild(modalWorkImgContainer);
-  modalWorkImgContainer.appendChild(imgElement);
-  modalWorkImgContainer.appendChild(deleteButtonElement);
-  deleteButtonElement.appendChild(deleteIconElement);
-  modalWorkElement.appendChild(modalFigcaptionElement);
+  const modalGallery = document.querySelector(".modal__gallery");
+  modalGallery.appendChild(modalWork);
+  modalWork.appendChild(modalWorkImageContainer);
+  modalWorkImageContainer.appendChild(modalWorkImage);
+  modalWorkImageContainer.appendChild(modalWorkDeleteButton);
+  modalWorkDeleteButton.appendChild(modalWorkDeleteIcon);
+  modalWork.appendChild(modalWorkTitle);
 };

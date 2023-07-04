@@ -1,4 +1,4 @@
-import { createWorkElement } from "./works.js";
+import { createGallery } from "./works.js";
 
 export const getWorksCategories = (works) => {
   const uniqueCategoriesIds = new Set();
@@ -14,11 +14,23 @@ export const getWorksCategories = (works) => {
   return uniqueCategories;
 };
 
-export const createCategoryButtonElement = (category, works) => {
-  const categoryElement = document.createElement("button");
-  categoryElement.className = "button button--filter";
-  categoryElement.innerText = category.name;
-  categoryElement.addEventListener("click", async () => {
+export const createFilters = (categories, works) => {
+  categories.forEach((category) => {
+    createFilterButton(category, works);
+  });
+};
+
+export const removeFilters = () => {
+  const portfolio = document.querySelector(".section--portfolio");
+  const filters = document.querySelector(".section__filters");
+  portfolio.removeChild(filters);
+};
+
+export const createFilterButton = (category, works) => {
+  const filterButton = document.createElement("button");
+  filterButton.className = "button button--filter";
+  filterButton.innerText = category.name;
+  filterButton.addEventListener("click", async () => {
     let worksFiltered = works.filter((work) => {
       return work.category.id === category.id;
     });
@@ -27,18 +39,14 @@ export const createCategoryButtonElement = (category, works) => {
       worksFiltered = works;
     }
     // Refresh gallery with filtered works
-    const galleryElement = document.querySelector(".section__gallery");
-    galleryElement.innerHTML = "";
-    worksFiltered.forEach((work) => {
-      createWorkElement(work);
-    });
+    createGallery(worksFiltered);
   });
 
-  const filtersElement = document.querySelector(".section__filters");
-  filtersElement.appendChild(categoryElement);
+  const filters = document.querySelector(".section__filters");
+  filters.appendChild(filterButton);
 };
 
-export const createModalFormCategoryOption = (category) => {
+export const createSelectCategoryOption = (category) => {
   const categoryOption = document.createElement("option");
   categoryOption.value = category.id;
   categoryOption.innerText = category.name;
