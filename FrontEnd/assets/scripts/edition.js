@@ -1,5 +1,6 @@
 import { createModalWorkElement } from "./works.js";
 import { createModalFormCategoryOption } from "./categories.js";
+import { checkInput } from "./form.js";
 
 function createEditionBarElement() {
   const editionBarElement = document.createElement("div");
@@ -117,20 +118,92 @@ function createModalEvents() {
     });
   });
 
-  const inputPhoto = document.getElementById("photo");
+  const setModalSubmitButtonState = () => {
+    const submitButton = document.getElementById("modal-form-submit");
 
-  inputPhoto.addEventListener("change", function (event) {
-    if (event && event.target && event.target.files && event.target.files[0]) {
-      const photoPreview = document.createElement("img");
-      photoPreview.className = ".form__item--image-upload";
-      photoPreview.style.height = "171px";
-      photoPreview.src = URL.createObjectURL(event.target.files[0]);
+    const titleInput = document.getElementById("modal-form-title");
+    const imageInput = document.getElementById("modal-form-image");
 
-      const inputPhotoContainer = document.querySelector(
+    const imageError = checkInput(imageInput);
+    const inputError = checkInput(titleInput);
+
+    if (imageError || inputError) {
+      submitButton.disabled = true;
+    } else if (!imageError && !inputError) {
+      submitButton.disabled = false;
+    }
+  };
+
+  const imageInput = document.getElementById("modal-form-image");
+  const titleInput = document.getElementById("modal-form-title");
+  titleInput.addEventListener("input", async function () {
+    setModalSubmitButtonState();
+  });
+  imageInput.addEventListener("input", async function (event) {
+    setModalSubmitButtonState();
+    const imageError = checkInput(event.target);
+    const imageErrorMessage = document.getElementById("image-error");
+
+    if (imageError && imageError === "type") {
+      imageErrorMessage.innerText = "L'image n'est pas au format PNG ou JPG";
+    } else if (imageError === "size") {
+      imageErrorMessage.innerText = "L'image est supérieure à 4mo";
+    } else {
+      // Hide form item
+      const inputImageContainer = document.querySelector(
         ".form__item--image-upload"
       );
-      inputPhotoContainer.style.padding = 0;
-      inputPhotoContainer.replaceChildren(photoPreview);
+      inputImageContainer.style.display = "none";
+
+      // Create new form item with image preview
+      const newInputImageContainer = document.createElement("div");
+      newInputImageContainer.className = "form__item form__item--image-upload";
+      newInputImageContainer.style.padding = 0;
+
+      const imagePreview = document.createElement("img");
+      imagePreview.className = "form__image--image-upload";
+      imagePreview.style.height = "176px";
+      imagePreview.src = URL.createObjectURL(event.target.files[0]);
+
+      const modalForm = document.querySelector(".form--modal");
+
+      modalForm.prepend(newInputImageContainer);
+      newInputImageContainer.appendChild(imagePreview);
+    }
+  });
+
+  const modalForm = document.querySelector(".form--modal");
+  modalForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append(
+      "image",
+      event.target.querySelector("[name='image']").files[0]
+    );
+    formData.append(
+      "title",
+      event.target.querySelector("[name='title']").value
+    );
+    formData.append(
+      "category",
+      event.target.querySelector("[name='category']").value
+    );
+
+    const authToken = window.localStorage.getItem("architect.authToken");
+
+    if (authToken) {
+      const response = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${authToken}`
+        },
+        body: formData
+      }).then((res) => res.json());
+
+      if (response) {
+        location.replace("#" + "modal-gallery");
+      }
     }
   });
 }

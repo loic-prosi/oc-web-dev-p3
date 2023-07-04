@@ -43,6 +43,6 @@ export function createModalFormCategoryOption(category) {
   categoryOption.value = category.id;
   categoryOption.innerText = category.name;
 
-  const select = document.getElementById("category");
+  const select = document.getElementById("modal-form-category");
   select.appendChild(categoryOption);
 }

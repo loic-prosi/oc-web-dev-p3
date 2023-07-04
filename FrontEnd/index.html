@@ -161,27 +161,26 @@
             <i
               class="form__icon form__icon--image-upload fa-regular fa-image"
             ></i>
-            <img class="form__image form__image--image-upload" />
             <input
               class="form__input form__input--image-upload"
               type="file"
-              id="photo"
-              name="photo"
-              accept="image/png, image/jpeg"
+              id="modal-form-image"
+              name="image"
+              accept="image/png, image/jpg, image/jpeg "
             />
             <p class="form__hint form__hint--image-upload">
               jpg, png : 4mo max
             </p>
             <span
-              id="photo-error"
-              class="form__error"
+              id="image-error"
+              class="form__error form__error--image-upload"
               aria-live="polite"
             ></span>
           </div>
           <div class="form__item">
             <label for="title" class="form__label">Title</label>
-            <input class="form__input" id="title" name="title" required
-            autofocus/ >
+            <input class="form__input" id="modal-form-title" name="title"
+            required autofocus/ >
             <span
               id="title-error"
               class="form__error"
@@ -190,7 +189,11 @@
           </div>
           <div class="form__item">
             <label for="category" class="form__label">Catégorie</label>
-            <select class="form__select" name="category" id="category"></select>
+            <select
+              class="form__select"
+              name="category"
+              id="modal-form-category"
+            ></select>
             <span
               id="category-error"
               class="form__error"
@@ -201,6 +204,7 @@
           <input
             type="submit"
             class="button button--primary"
+            id="modal-form-submit"
             value="Valider"
             disabled
           />
