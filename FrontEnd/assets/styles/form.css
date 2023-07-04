@@ -17,7 +17,7 @@
 
 .form__item--image-upload {
   align-items: center;
-  padding: 20px 0 7px 0;
+  padding: 20px 0px 0px 0px;
   background-color: var(--modal-image-bg-color);
 }
 
@@ -43,13 +43,10 @@
   height: 36px;
   width: 170px;
   box-shadow: none;
-  padding: 0;
   margin-top: 15px;
+  padding-left: 0px;
   background-color: #cbd6dc;
   border-radius: 50px;
-}
-.form__input--image-upload::-webkit-file-upload-button {
-  visibility: hidden;
 }
 .form__input--image-upload::before {
   padding: 11px 30px 10px 30px;
@@ -102,4 +99,8 @@
 .form__error {
   margin-top: 10px;
   color: red;
+}
+
+.form__error--image-upload {
+  margin: 0px 0px 10px 0px;
 }
