@@ -1,30 +1,4 @@
-export const getAllWorks = async () => {
-  const response = await fetch("http://localhost:5678/api/works");
-  const works = await response.json();
-  return works;
-};
-
-export const createWork = async (workData, authToken) => {
-  const response = await fetch("http://localhost:5678/api/works", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${authToken}`
-    },
-    body: workData
-  }).then((res) => res.json());
-  return response;
-};
-
-const deleteWork = async (workId, authToken) => {
-  const response = await fetch(`http://localhost:5678/api/works/${workId}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${authToken}`
-    }
-  });
-  return response;
-};
+import { deleteWork } from "./api.js";
 
 export const createGallery = (works) => {
   const gallery = document.querySelector(".section__gallery");

@@ -1,4 +1,5 @@
-import { getAllWorks, createGallery } from "./works.js";
+import { getAllWorks } from "./api.js";
+import { createGallery } from "./works.js";
 import { getWorksCategories, createFilters } from "./categories.js";
 import { setEditionState } from "./edition.js";
 import { setLoginFormEvent } from "./login.js";

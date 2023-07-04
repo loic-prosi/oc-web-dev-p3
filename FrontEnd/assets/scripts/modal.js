@@ -1,5 +1,5 @@
+import { createWork } from "./api.js";
 import {
-  createWork,
   createGalleryWork,
   createModalGallery,
   createModalGalleryWork
