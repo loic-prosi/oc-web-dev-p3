@@ -62,7 +62,13 @@ const deleteGalleryWork = (workId) => {
   gallery.removeChild(galleryWork);
 };
 
-export const createModalWork = (work) => {
+export const createModalGallery = (works) => {
+  works.forEach((work) => {
+    createModalGalleryWork(work);
+  });
+};
+
+export const createModalGalleryWork = (work) => {
   const modalWork = document.createElement("a");
   modalWork.className = "work work--modal";
   modalWork.setAttribute("data-id-modal", work.id);

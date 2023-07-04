@@ -1,6 +1,5 @@
-import { createWork, createGalleryWork, createModalWork } from "./works.js";
-import { removeFilters, createSelectCategoryOption } from "./categories.js";
-import { checkInput } from "./form.js";
+import { setModalScripts } from "./modal.js";
+import { removeFilters } from "./categories.js";
 
 const createEditionBar = () => {
   const editionBar = document.createElement("div");
@@ -30,7 +29,7 @@ const createEditionBar = () => {
   editionBar.appendChild(editionBarButton);
 };
 
-const createEditionLink = (
+const createEditionButton = (
   buttonLinkClassName,
   linkContainerParentSelector,
   url,
@@ -63,175 +62,34 @@ const createEditionLink = (
 };
 
 const createEditionButtons = () => {
-  createEditionLink(
+  // Update page styles before creating edition buttons
+  const introductionArticle = document.querySelector(".section__article");
+  const portfolioTitle = document.querySelector(
+    ".section__title-container--portfolio"
+  );
+  introductionArticle.classList.add("section__article--edition");
+  portfolioTitle.classList.add("section__title-container--portfolio-edition");
+
+  createEditionButton(
     "button-link--introduction-figure",
     ".section--introduction figure"
   );
-  createEditionLink(
+  createEditionButton(
     "button-link--introduction-article",
     ".section--introduction article",
     null,
     true
   );
-  createEditionLink(
+  createEditionButton(
     "button-link--portfolio",
     ".section__title-container--portfolio",
     "#modal-gallery"
   );
 };
 
-const createModalEvents = () => {
-  const editionButton = document.querySelector(".button-link--portfolio");
-  // Open the modal when clicking on the portfolio "Edit" button
-  editionButton.addEventListener("click", () => {
-    const modal = document.getElementById("modal");
-    modal.showModal();
-  });
-
-  const modal = document.getElementById("modal");
-  // Close the modal when pressing "Esc" button
-  modal.addEventListener("cancel", () => {
-    modal.close();
-  });
-  // Close the modal when clicking outside it
-  modal.addEventListener("click", (event) => {
-    // Get target element position information in the viewport
-    const targetRect = event.target.getBoundingClientRect();
-    // If one of the mouse cursor coordinates is outside the target, the modal is closed
-    // The coordinates are calculated from the top left of the viewport
-    const cursorOutsideTarget =
-      targetRect.left > event.clientX ||
-      targetRect.right < event.clientX ||
-      targetRect.top > event.clientY ||
-      targetRect.bottom < event.clientY;
-    // The previous condition doesn't work with select elements so we need to add a specific one
-    if (cursorOutsideTarget && event.target.tagName !== "SELECT") {
-      modal.close();
-    }
-  });
-  // Close the modal when clicking on the close icon
-  const closeButtons = document.querySelectorAll(".button--modal-nav-close");
-  closeButtons.forEach((closeButton) => {
-    closeButton.addEventListener("click", () => {
-      modal.close();
-    });
-  });
-
-  const setModalSubmitButtonState = () => {
-    const submitButton = document.getElementById("modal-form-submit");
-
-    const titleInput = document.getElementById("modal-form-title");
-    const imageInput = document.getElementById("modal-form-image");
-
-    const imageError = checkInput(imageInput);
-    const inputError = checkInput(titleInput);
-
-    if (imageError || inputError) {
-      submitButton.disabled = true;
-    } else if (!imageError && !inputError) {
-      submitButton.disabled = false;
-    }
-  };
-
-  const imageInput = document.getElementById("modal-form-image");
-  const titleInput = document.getElementById("modal-form-title");
-  titleInput.addEventListener("input", () => {
-    setModalSubmitButtonState();
-  });
-  imageInput.addEventListener("input", (event) => {
-    setModalSubmitButtonState();
-    const imageError = checkInput(event.target);
-    const imageErrorMessage = document.getElementById("image-error");
-
-    if (imageError && imageError === "type") {
-      imageErrorMessage.innerText = "L'image n'est pas au format PNG ou JPG";
-    } else if (imageError === "size") {
-      imageErrorMessage.innerText = "L'image est supérieure à 4mo";
-    } else {
-      // Hide form item
-      const inputImageContainer = document.querySelector(
-        ".form__item--image-upload"
-      );
-      inputImageContainer.style.display = "none";
-
-      // Create new form item with image preview
-      const newInputImageContainer = document.createElement("div");
-      newInputImageContainer.className = "form__item form__item--image-upload";
-      newInputImageContainer.style.padding = 0;
-
-      const imagePreview = document.createElement("img");
-      imagePreview.className = "form__image--image-upload";
-      imagePreview.style.height = "176px";
-      imagePreview.src = URL.createObjectURL(event.target.files[0]);
-
-      const modalForm = document.querySelector(".form--modal");
-
-      modalForm.prepend(newInputImageContainer);
-      newInputImageContainer.appendChild(imagePreview);
-    }
-  });
-
-  const modalForm = document.querySelector(".form--modal");
-  modalForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData();
-    formData.append(
-      "image",
-      event.target.querySelector("[name='image']").files[0]
-    );
-    formData.append(
-      "title",
-      event.target.querySelector("[name='title']").value
-    );
-    formData.append(
-      "category",
-      event.target.querySelector("[name='category']").value
-    );
-
-    const authToken = window.localStorage.getItem("architect.authToken");
-
-    if (authToken) {
-      const response = await createWork(formData, authToken);
-
-      if (response) {
-        let work = {
-          category: { id: response.categoryId },
-          id: response.id,
-          imageUrl: response.imageUrl,
-          title: response.title,
-          userId: response.userId
-        };
-        createGalleryWork(work);
-        createModalWork(work);
-        location.replace("#" + "modal-gallery");
-      }
-    }
-  });
-};
-
-const updatePageStyles = () => {
-  const introductionArticle = document.querySelector(".section__article");
-  introductionArticle.classList.add("section__article--edition");
-
-  const portfolioTitle = document.querySelector(
-    ".section__title-container--portfolio"
-  );
-  portfolioTitle.classList.add("section__title-container--portfolio-edition");
-};
-
 export const setEditionState = (works, categories) => {
-  // Original categories contains all the categories except the "all" one
-  const originalCategories = categories.slice(1);
   createEditionBar();
   createEditionButtons();
-  createModalEvents();
-  works.forEach((work) => {
-    createModalWork(work);
-  });
-  originalCategories.forEach((category) => {
-    createSelectCategoryOption(category);
-  });
   removeFilters();
-  updatePageStyles();
+  setModalScripts(works, categories);
 };
