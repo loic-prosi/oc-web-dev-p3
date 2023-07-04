@@ -5,7 +5,7 @@ import {
 } from "./categories.js";
 import { setEditionState } from "./edition.js";
 
-async function renderElements() {
+const renderElements = async () => {
   const works = await getAllWorks();
 
   works.forEach((work) => {
@@ -22,6 +22,6 @@ async function renderElements() {
   if (authToken) {
     setEditionState(works, categories);
   }
-}
+};
 
 renderElements();

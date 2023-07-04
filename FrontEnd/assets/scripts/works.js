@@ -1,10 +1,10 @@
-export async function getAllWorks() {
+export const getAllWorks = async () => {
   const response = await fetch("http://localhost:5678/api/works");
   const works = await response.json();
   return works;
-}
+};
 
-export function createWorkElement(work) {
+export const createWorkElement = (work) => {
   const workElement = document.createElement("figure");
   workElement.className = "work";
   workElement.setAttribute("data-id", work.id);
@@ -24,9 +24,9 @@ export function createWorkElement(work) {
 
   workElement.appendChild(imgElement);
   workElement.appendChild(figcaptionElement);
-}
+};
 
-export function createModalWorkElement(work) {
+export const createModalWorkElement = (work) => {
   const modalWorkElement = document.createElement("a");
   modalWorkElement.className = "work work--modal";
   modalWorkElement.setAttribute("data-id-modal", work.id);
@@ -45,7 +45,7 @@ export function createModalWorkElement(work) {
   const deleteIconElement = document.createElement("i");
   deleteIconElement.className = "fa-solid fa-trash-can";
 
-  deleteButtonElement.addEventListener("click", async function (event) {
+  deleteButtonElement.addEventListener("click", async (event) => {
     const authToken = window.localStorage.getItem("architect.authToken");
     if (authToken) {
       const response = await fetch(
@@ -84,4 +84,4 @@ export function createModalWorkElement(work) {
   modalWorkImgContainer.appendChild(deleteButtonElement);
   deleteButtonElement.appendChild(deleteIconElement);
   modalWorkElement.appendChild(modalFigcaptionElement);
-}
+};

@@ -2,7 +2,7 @@ import { createWorkElement, createModalWorkElement } from "./works.js";
 import { createModalFormCategoryOption } from "./categories.js";
 import { checkInput } from "./form.js";
 
-function createEditionBarElement() {
+const createEditionBarElement = () => {
   const editionBarElement = document.createElement("div");
   editionBarElement.className = "edition-bar";
 
@@ -17,7 +17,7 @@ function createEditionBarElement() {
   const editionBarButtonElement = document.createElement("button");
   editionBarButtonElement.className = "button button--edition-bar";
   editionBarButtonElement.innerText = "publier les changements";
-  editionBarButtonElement.addEventListener("click", function () {
+  editionBarButtonElement.addEventListener("click", () => {
     window.localStorage.removeItem("architect.authToken");
     location.reload();
   });
@@ -29,14 +29,14 @@ function createEditionBarElement() {
   editionBarElement.appendChild(editionBarIconElement);
   editionBarElement.appendChild(editionBarTextElement);
   editionBarElement.appendChild(editionBarButtonElement);
-}
+};
 
-function createEditionLink(
+const createEditionLink = (
   buttonLinkClassName,
   linkContainerParentSelector,
   url,
   isFirstChild
-) {
+) => {
   const link = document.createElement("a");
   if (url) {
     link.href = url;
@@ -61,9 +61,9 @@ function createEditionLink(
   }
   link.appendChild(linkIcon);
   link.appendChild(linkText);
-}
+};
 
-function createEditionButtonsElements() {
+const createEditionButtonsElements = () => {
   createEditionLink(
     "button-link--introduction-figure",
     ".section--introduction figure"
@@ -79,19 +79,19 @@ function createEditionButtonsElements() {
     ".section__title-container--portfolio",
     "#modal-gallery"
   );
-}
+};
 
-function createModalEvents() {
+const createModalEvents = () => {
   const editionButton = document.querySelector(".button-link--portfolio");
   // Open the modal when clicking on the portfolio "Edit" button
-  editionButton.addEventListener("click", function () {
+  editionButton.addEventListener("click", () => {
     const modal = document.getElementById("modal");
     modal.showModal();
   });
 
   const modal = document.getElementById("modal");
   // Close the modal when pressing "Esc" button
-  modal.addEventListener("cancel", function () {
+  modal.addEventListener("cancel", () => {
     modal.close();
   });
   // Close the modal when clicking outside it
@@ -113,7 +113,7 @@ function createModalEvents() {
   // Close the modal when clicking on the close icon
   const closeButtons = document.querySelectorAll(".button--modal-nav-close");
   closeButtons.forEach((closeButton) => {
-    closeButton.addEventListener("click", function () {
+    closeButton.addEventListener("click", () => {
       modal.close();
     });
   });
@@ -136,10 +136,10 @@ function createModalEvents() {
 
   const imageInput = document.getElementById("modal-form-image");
   const titleInput = document.getElementById("modal-form-title");
-  titleInput.addEventListener("input", async function () {
+  titleInput.addEventListener("input", async () => {
     setModalSubmitButtonState();
   });
-  imageInput.addEventListener("input", async function (event) {
+  imageInput.addEventListener("input", async (event) => {
     setModalSubmitButtonState();
     const imageError = checkInput(event.target);
     const imageErrorMessage = document.getElementById("image-error");
@@ -173,7 +173,7 @@ function createModalEvents() {
   });
 
   const modalForm = document.querySelector(".form--modal");
-  modalForm.addEventListener("submit", async function (event) {
+  modalForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const formData = new FormData();
@@ -215,18 +215,18 @@ function createModalEvents() {
       }
     }
   });
-}
+};
 
-function removePorfolioFilters() {
+const removePorfolioFilters = () => {
   const portfolioFiltersParent =
     document.querySelector(".section__filters").parentElement;
 
   const portfolioFilters = document.querySelector(".section__filters");
 
   portfolioFiltersParent.removeChild(portfolioFilters);
-}
+};
 
-function updatePageStyles() {
+const updatePageStyles = () => {
   const introductionArticle = document.querySelector(".section__article");
   introductionArticle.classList.add("section__article--edition");
 
@@ -234,9 +234,9 @@ function updatePageStyles() {
     ".section__title-container--portfolio"
   );
   portfolioTitle.classList.add("section__title-container--portfolio-edition");
-}
+};
 
-export function setEditionState(works, categories) {
+export const setEditionState = (works, categories) => {
   // Original categories contains all the categories except the "all" one
   const originalCategories = categories.slice(1);
   createEditionBarElement();
@@ -250,4 +250,4 @@ export function setEditionState(works, categories) {
   });
   removePorfolioFilters();
   updatePageStyles();
-}
+};

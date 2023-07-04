@@ -1,7 +1,7 @@
-async function renderElements() {
+const renderElements = async () => {
   const form = document.querySelector(".form--login");
 
-  form.addEventListener("submit", async function (event) {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const loginData = {
@@ -49,6 +49,6 @@ async function renderElements() {
       }
     }
   });
-}
+};
 
 renderElements();

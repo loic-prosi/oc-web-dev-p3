@@ -1,6 +1,6 @@
 import { createWorkElement } from "./works.js";
 
-export function getWorksCategories(works) {
+export const getWorksCategories = (works) => {
   const uniqueCategoriesIds = new Set();
   works.forEach((work) => uniqueCategoriesIds.add(work.category.id));
 
@@ -12,13 +12,13 @@ export function getWorksCategories(works) {
   });
 
   return uniqueCategories;
-}
+};
 
-export function createCategoryButtonElement(category, works) {
+export const createCategoryButtonElement = (category, works) => {
   const categoryElement = document.createElement("button");
   categoryElement.className = "button button--filter";
   categoryElement.innerText = category.name;
-  categoryElement.addEventListener("click", async function () {
+  categoryElement.addEventListener("click", async () => {
     let worksFiltered = works.filter((work) => {
       return work.category.id === category.id;
     });
@@ -36,13 +36,13 @@ export function createCategoryButtonElement(category, works) {
 
   const filtersElement = document.querySelector(".section__filters");
   filtersElement.appendChild(categoryElement);
-}
+};
 
-export function createModalFormCategoryOption(category) {
+export const createModalFormCategoryOption = (category) => {
   const categoryOption = document.createElement("option");
   categoryOption.value = category.id;
   categoryOption.innerText = category.name;
 
   const select = document.getElementById("modal-form-category");
   select.appendChild(categoryOption);
-}
+};
