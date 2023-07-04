@@ -1,3 +1,14 @@
+export const checkInput = (input) => {
+  switch (input.type) {
+    case "text":
+      return checkInputText(input);
+    case "file":
+      return checkInputFile(input);
+    default:
+      console.warning(`Unknown input type : ${input.type}.`);
+  }
+};
+
 const checkInputText = (inputText) => {
   const inputTextEmpty = !inputText.value || inputText.value.length === 0;
   if (inputTextEmpty) {
@@ -22,16 +33,5 @@ const checkInputFile = (inputFile) => {
     } else {
       return false;
     }
-  }
-};
-
-export const checkInput = (input) => {
-  switch (input.type) {
-    case "text":
-      return checkInputText(input);
-    case "file":
-      return checkInputFile(input);
-    default:
-      console.warning(`Unknown input type : ${input.type}.`);
   }
 };

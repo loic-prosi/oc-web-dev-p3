@@ -1,4 +1,4 @@
-import { createWork, createModalWork } from "./works.js";
+import { createWork, createGalleryWork, createModalWork } from "./works.js";
 import { removeFilters, createSelectCategoryOption } from "./categories.js";
 import { checkInput } from "./form.js";
 
@@ -135,10 +135,10 @@ const createModalEvents = () => {
 
   const imageInput = document.getElementById("modal-form-image");
   const titleInput = document.getElementById("modal-form-title");
-  titleInput.addEventListener("input", async () => {
+  titleInput.addEventListener("input", () => {
     setModalSubmitButtonState();
   });
-  imageInput.addEventListener("input", async (event) => {
+  imageInput.addEventListener("input", (event) => {
     setModalSubmitButtonState();
     const imageError = checkInput(event.target);
     const imageErrorMessage = document.getElementById("image-error");
@@ -192,13 +192,7 @@ const createModalEvents = () => {
     const authToken = window.localStorage.getItem("architect.authToken");
 
     if (authToken) {
-      const response = await fetch("http://localhost:5678/api/works", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${authToken}`
-        },
-        body: formData
-      }).then((res) => res.json());
+      const response = await createWork(formData, authToken);
 
       if (response) {
         let work = {
@@ -208,7 +202,7 @@ const createModalEvents = () => {
           title: response.title,
           userId: response.userId
         };
-        createWork(work);
+        createGalleryWork(work);
         createModalWork(work);
         location.replace("#" + "modal-gallery");
       }

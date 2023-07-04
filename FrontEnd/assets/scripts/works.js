@@ -4,15 +4,37 @@ export const getAllWorks = async () => {
   return works;
 };
 
+export const createWork = async (workData, authToken) => {
+  const response = await fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    },
+    body: workData
+  }).then((res) => res.json());
+  return response;
+};
+
+const deleteWork = async (workId, authToken) => {
+  const response = await fetch(`http://localhost:5678/api/works/${workId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${authToken}`
+    }
+  });
+  return response;
+};
+
 export const createGallery = (works) => {
   const gallery = document.querySelector(".section__gallery");
   gallery.innerHTML = "";
   works.forEach((work) => {
-    createWork(work);
+    createGalleryWork(work);
   });
 };
 
-export const createWork = (work) => {
+export const createGalleryWork = (work) => {
   const galleryWork = document.createElement("figure");
   galleryWork.className = "work";
   galleryWork.setAttribute("data-id", work.id);
@@ -34,6 +56,12 @@ export const createWork = (work) => {
   galleryWork.appendChild(workTitle);
 };
 
+const deleteGalleryWork = (workId) => {
+  const gallery = document.querySelector(".section__gallery");
+  const galleryWork = document.querySelector(`[data-id="${workId}"]`);
+  gallery.removeChild(galleryWork);
+};
+
 export const createModalWork = (work) => {
   const modalWork = document.createElement("a");
   modalWork.className = "work work--modal";
@@ -53,30 +81,14 @@ export const createModalWork = (work) => {
   const modalWorkDeleteIcon = document.createElement("i");
   modalWorkDeleteIcon.className = "fa-solid fa-trash-can";
 
-  modalWorkDeleteButton.addEventListener("click", async (event) => {
+  modalWorkDeleteButton.addEventListener("click", async () => {
     const authToken = window.localStorage.getItem("architect.authToken");
     if (authToken) {
-      const response = await fetch(
-        `http://localhost:5678/api/works/${work.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${authToken}`
-          }
-        }
-      );
+      const response = await deleteWork(work.id, authToken);
+
       if (response && response.status && response.status === 204) {
-        const galleryWork = document.querySelector(`[data-id="${work.id}"]`);
-        const modalWork = document.querySelector(
-          `[data-id-modal="${work.id}"]`
-        );
-
-        const gallery = document.querySelector(".section__gallery");
-        const modalGallery = document.querySelector(".modal__gallery");
-
-        gallery.removeChild(galleryWork);
-        modalGallery.removeChild(modalWork);
+        deleteGalleryWork(work.id);
+        deleteModalGalleryWork(work.id);
       }
     }
   });
@@ -92,4 +104,10 @@ export const createModalWork = (work) => {
   modalWorkImageContainer.appendChild(modalWorkDeleteButton);
   modalWorkDeleteButton.appendChild(modalWorkDeleteIcon);
   modalWork.appendChild(modalWorkTitle);
+};
+
+const deleteModalGalleryWork = (workId) => {
+  const modalWork = document.querySelector(`[data-id-modal="${workId}"]`);
+  const modalGallery = document.querySelector(".modal__gallery");
+  modalGallery.removeChild(modalWork);
 };
