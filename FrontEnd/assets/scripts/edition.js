@@ -1,4 +1,4 @@
-import { createModalWorkElement } from "./works.js";
+import { createWorkElement, createModalWorkElement } from "./works.js";
 import { createModalFormCategoryOption } from "./categories.js";
 import { checkInput } from "./form.js";
 
@@ -202,6 +202,15 @@ function createModalEvents() {
       }).then((res) => res.json());
 
       if (response) {
+        let work = {
+          category: { id: response.categoryId },
+          id: response.id,
+          imageUrl: response.imageUrl,
+          title: response.title,
+          userId: response.userId
+        };
+        createWorkElement(work);
+        createModalWorkElement(work);
         location.replace("#" + "modal-gallery");
       }
     }
