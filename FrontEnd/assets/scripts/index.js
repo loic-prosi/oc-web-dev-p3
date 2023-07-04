@@ -4,8 +4,10 @@ import { setEditionState } from "./edition.js";
 import { setLoginFormEvent } from "./login.js";
 
 const setScripts = async () => {
-  const landingPage = window.location.pathname === "/index.html";
-  const loginPage = window.location.pathname === "/assets/pages/login.html";
+  const locationPath = window.location.pathname;
+  const landingPage = locationPath === "/" || locationPath === "/index.html";
+  const loginPage = locationPath === "/assets/pages/login.html";
+
   if (landingPage) {
     await setLandingPageScripts();
   }
