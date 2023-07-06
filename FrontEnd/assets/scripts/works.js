@@ -12,7 +12,6 @@ export const createGalleryWork = (work) => {
   const galleryWork = document.createElement("figure");
   galleryWork.className = "work";
   galleryWork.setAttribute("data-id", work.id);
-  galleryWork.setAttribute("data-category", work.category.id);
 
   const workImage = document.createElement("img");
   workImage.className = "work__image";

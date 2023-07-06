@@ -45,16 +45,3 @@ export const createFilterButton = (category, works) => {
   const filters = document.querySelector(".section__filters");
   filters.appendChild(filterButton);
 };
-
-export const createSelectCategoryOptions = (categories) => {
-  // Original categories contains all the categories except the "all" one
-  const originalCategories = categories.slice(1);
-  originalCategories.forEach((category) => {
-    const categoryOption = document.createElement("option");
-    categoryOption.value = category.id;
-    categoryOption.innerText = category.name;
-
-    const select = document.getElementById("modal-form-category");
-    select.appendChild(categoryOption);
-  });
-};

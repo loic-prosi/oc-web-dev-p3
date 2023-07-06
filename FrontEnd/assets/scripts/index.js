@@ -1,8 +1,18 @@
 import { getAllWorks } from "./api.js";
-import { createGallery } from "./works.js";
-import { getWorksCategories, createFilters } from "./categories.js";
-import { setEditionState } from "./edition.js";
+import { createGallery, createModalGallery } from "./works.js";
+import {
+  getWorksCategories,
+  createFilters,
+  removeFilters
+} from "./categories.js";
 import { setLoginFormEvent } from "./login.js";
+import { createEditionBar, createEditionButtons } from "./edition.js";
+import {
+  createOpenModalEvent,
+  createCloseModalEvents,
+  createModalFormEvents,
+  createModalFormSelect
+} from "./modal.js";
 
 const setScripts = async () => {
   const locationPath = window.location.pathname;
@@ -26,12 +36,25 @@ const setLandingPageScripts = async () => {
 
   const authToken = window.localStorage.getItem("architect.authToken");
   if (authToken) {
-    setEditionState(works, categories);
+    setAdminState(works, categories);
   }
 };
 
 const setLoginPageScripts = async () => {
   setLoginFormEvent();
+};
+
+const setAdminState = async (works, categories) => {
+  createEditionBar();
+  createEditionButtons();
+
+  removeFilters();
+
+  createModalGallery(works);
+  createModalFormSelect(categories);
+  createOpenModalEvent();
+  createCloseModalEvents();
+  createModalFormEvents();
 };
 
 setScripts();

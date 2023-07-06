@@ -1,23 +1,8 @@
 import { createWork } from "./api.js";
-import {
-  createGalleryWork,
-  createModalGallery,
-  createModalGalleryWork
-} from "./works.js";
+import { createGalleryWork, createModalGalleryWork } from "./works.js";
 import { checkInput } from "./form.js";
-import { createSelectCategoryOptions } from "./categories.js";
 
-export const setModalScripts = (works, categories) => {
-  createOpenModalEvent();
-  createCloseModalEvents();
-
-  createModalGallery(works);
-  createSelectCategoryOptions(categories);
-
-  createModalFormEvents();
-};
-
-const createOpenModalEvent = () => {
+export const createOpenModalEvent = () => {
   const editionButton = document.querySelector(".button-link--portfolio");
   // Open the modal when clicking on the portfolio "Edit" button
   editionButton.addEventListener("click", () => {
@@ -26,7 +11,7 @@ const createOpenModalEvent = () => {
   });
 };
 
-const createCloseModalEvents = () => {
+export const createCloseModalEvents = () => {
   const modal = document.getElementById("modal");
   // Close the modal when clicking on the close icon
   const closeButtons = document.querySelectorAll(".button--modal-nav-close");
@@ -57,7 +42,7 @@ const createCloseModalEvents = () => {
   });
 };
 
-const createModalFormEvents = () => {
+export const createModalFormEvents = () => {
   const modalForm = document.querySelector(".form--modal");
 
   const imageInput = document.getElementById("modal-form-image");
@@ -136,6 +121,19 @@ const createModalFormEvents = () => {
         location.replace("#" + "modal-gallery");
       }
     }
+  });
+};
+
+export const createModalFormSelect = (categories) => {
+  // Original categories contains all the categories except the "all" one
+  const originalCategories = categories.slice(1);
+  originalCategories.forEach((category) => {
+    const categoryOption = document.createElement("option");
+    categoryOption.value = category.id;
+    categoryOption.innerText = category.name;
+
+    const select = document.getElementById("modal-form-category");
+    select.appendChild(categoryOption);
   });
 };
 

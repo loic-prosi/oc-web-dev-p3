@@ -1,7 +1,4 @@
-import { setModalScripts } from "./modal.js";
-import { removeFilters } from "./categories.js";
-
-const createEditionBar = () => {
+export const createEditionBar = () => {
   const editionBar = document.createElement("div");
   editionBar.className = "edition-bar";
 
@@ -29,7 +26,7 @@ const createEditionBar = () => {
   editionBar.appendChild(editionBarButton);
 };
 
-const createEditionButton = (
+export const createEditionButton = (
   buttonLinkClassName,
   linkContainerParentSelector,
   url,
@@ -61,7 +58,7 @@ const createEditionButton = (
   link.appendChild(linkText);
 };
 
-const createEditionButtons = () => {
+export const createEditionButtons = () => {
   // Update page styles before creating edition buttons
   const introductionArticle = document.querySelector(".section__article");
   const portfolioTitle = document.querySelector(
@@ -85,11 +82,4 @@ const createEditionButtons = () => {
     ".section__title-container--portfolio",
     "#modal-gallery"
   );
-};
-
-export const setEditionState = (works, categories) => {
-  createEditionBar();
-  createEditionButtons();
-  removeFilters();
-  setModalScripts(works, categories);
 };
