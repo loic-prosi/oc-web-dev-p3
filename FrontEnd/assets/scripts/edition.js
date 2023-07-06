@@ -60,11 +60,11 @@ export const createEditionButton = (
 
 export const createEditionButtons = () => {
   // Update page styles before creating edition buttons
-  const introductionArticle = document.querySelector(".section__article");
+  const introductionArticle = document.querySelector(".section__introduction");
   const portfolioTitle = document.querySelector(
     ".section__title-container--portfolio"
   );
-  introductionArticle.classList.add("section__article--edition");
+  introductionArticle.classList.add("section__introduction--edition");
   portfolioTitle.classList.add("section__title-container--portfolio-edition");
 
   createEditionButton(
@@ -73,7 +73,7 @@ export const createEditionButtons = () => {
   );
   createEditionButton(
     "button-link--introduction-article",
-    ".section--introduction article",
+    ".section__introduction",
     null,
     true
   );

@@ -55,8 +55,15 @@
         <form method="post" class="form form--login">
           <div class="form__item">
             <label for="email" class="form__label">E-mail</label>
-            <input class="form__input" type="email" id="email" name="email"
-            required autofocus/ >
+            <input
+              class="form__input"
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              required
+              autofocus
+            />
             <span
               id="email-error"
               class="form__error"
@@ -65,8 +72,14 @@
           </div>
           <div class="form__item">
             <label for="password" class="form__label">Mot de passe</label>
-            <input class="form__input" type="password" minlength="6"
-            id="password" name="password" required/ >
+            <input
+              class="form__input"
+              type="password"
+              minlength="6"
+              id="password"
+              name="password"
+              required
+            />
             <span
               id="password-error"
               class="form__error"

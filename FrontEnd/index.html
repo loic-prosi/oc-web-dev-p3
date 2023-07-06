@@ -56,7 +56,7 @@
             alt="Sophie Bluel"
           />
         </figure>
-        <article class="section__article">
+        <div class="section__introduction">
           <h2 class="section__title section__title--introduction">
             Designer d'espace
           </h2>
@@ -75,7 +75,7 @@
             En cas de besoin, une équipe pluridisciplinaire peut-être constituée
             : architecte DPLG, décorateur(trice)
           </p>
-        </article>
+        </div>
       </section>
       <section id="portfolio" class="section section--portfolio">
         <div
@@ -92,11 +92,23 @@
         <form class="form form--contact" action="#" method="post">
           <div class="form__item">
             <label class="form__label" for="name">Nom</label>
-            <input class="form__input" type="text" name="name" id="name" />
+            <input
+              class="form__input"
+              type="text"
+              name="name"
+              id="name"
+              autocomplete="name"
+            />
           </div>
           <div class="form__item">
             <label class="form__label" for="email">Email</label>
-            <input class="form__input" type="email" name="email" id="email" />
+            <input
+              class="form__input"
+              type="email"
+              name="email"
+              id="email"
+              autocomplete="email"
+            />
           </div>
 
           <div class="form__item">
@@ -123,93 +135,100 @@
         </ul>
       </nav>
     </footer>
-  </body>
 
-  <dialog class="modal" id="modal">
-    <div class="modal__tabs">
-      <div id="modal-gallery" class="modal__content">
-        <div class="modal__navigation modal__navigation--gallery">
-          <button class="button button--modal-nav button--modal-nav-close">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-        <h2 class="modal__title">Galerie photo</h2>
-        <div class="modal__gallery"></div>
-        <hr class="modal__separation" />
-        <a href="#modal-form" class="button button--primary"
-          >Ajouter une photo</a
-        >
-        <button class="button-link button-link--delete">
-          Supprimer la galerie
-        </button>
-      </div>
-      <div id="modal-form" class="modal__content">
-        <div class="modal__navigation modal__navigation--form">
-          <a
-            href="#modal-gallery"
-            class="button button--modal-nav button--modal-nav-previous"
-          >
-            <i class="fa-solid fa-arrow-left"></i>
-          </a>
-          <button class="button button--modal-nav button--modal-nav-close">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-        <h2 class="modal__title">Ajout photo</h2>
-        <form method="post" class="form form--modal">
-          <div class="form__item form__item--image-upload">
-            <i
-              class="form__icon form__icon--image-upload fa-regular fa-image"
-            ></i>
-            <input
-              class="form__input form__input--image-upload"
-              type="file"
-              id="modal-form-image"
-              name="image"
-              accept="image/png, image/jpg, image/jpeg"
-            />
-            <p class="form__hint form__hint--image-upload">
-              jpg, png : 4mo max
-            </p>
-            <span
-              id="image-error"
-              class="form__error form__error--image-upload"
-              aria-live="polite"
-            ></span>
+    <dialog class="modal" id="modal">
+      <div class="modal__tabs">
+        <div id="modal-gallery" class="modal__content">
+          <div class="modal__navigation modal__navigation--gallery">
+            <button class="button button--modal-nav button--modal-nav-close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
           </div>
-          <div class="form__item">
-            <label for="title" class="form__label">Title</label>
-            <input class="form__input" id="modal-form-title" name="title"
-            required autofocus/ >
-            <span
-              id="title-error"
-              class="form__error"
-              aria-live="polite"
-            ></span>
-          </div>
-          <div class="form__item">
-            <label for="category" class="form__label">Catégorie</label>
-            <select
-              class="form__select"
-              name="category"
-              id="modal-form-category"
-            ></select>
-            <span
-              id="category-error"
-              class="form__error"
-              aria-live="polite"
-            ></span>
-          </div>
+          <h2 class="modal__title">Galerie photo</h2>
+          <div class="modal__gallery"></div>
           <hr class="modal__separation" />
-          <input
-            type="submit"
-            class="button button--primary"
-            id="modal-form-submit"
-            value="Valider"
-            disabled
-          />
-        </form>
+          <a href="#modal-form" class="button button--primary"
+            >Ajouter une photo</a
+          >
+          <button class="button-link button-link--delete">
+            Supprimer la galerie
+          </button>
+        </div>
+        <div id="modal-form" class="modal__content">
+          <div class="modal__navigation modal__navigation--form">
+            <a
+              href="#modal-gallery"
+              class="button button--modal-nav button--modal-nav-previous"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <button class="button button--modal-nav button--modal-nav-close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <h2 class="modal__title">Ajout photo</h2>
+          <form method="post" class="form form--modal">
+            <div class="form__item form__item--image-upload">
+              <i
+                class="form__icon form__icon--image-upload fa-regular fa-image"
+              ></i>
+              <input
+                class="form__input form__input--image-upload"
+                type="file"
+                id="modal-form-image"
+                name="image"
+                accept="image/png, image/jpg, image/jpeg"
+              />
+              <p class="form__hint form__hint--image-upload">
+                jpg, png : 4mo max
+              </p>
+              <span
+                id="image-error"
+                class="form__error form__error--image-upload"
+                aria-live="polite"
+              ></span>
+            </div>
+            <div class="form__item">
+              <label for="modal-form-title" class="form__label">Title</label>
+              <input
+                class="form__input"
+                id="modal-form-title"
+                name="title"
+                required
+                autofocus
+              />
+              <span
+                id="title-error"
+                class="form__error"
+                aria-live="polite"
+              ></span>
+            </div>
+            <div class="form__item">
+              <label for="modal-form-category" class="form__label"
+                >Catégorie</label
+              >
+              <select
+                class="form__select"
+                name="category"
+                id="modal-form-category"
+              ></select>
+              <span
+                id="category-error"
+                class="form__error"
+                aria-live="polite"
+              ></span>
+            </div>
+            <hr class="modal__separation" />
+            <input
+              type="submit"
+              class="button button--primary"
+              id="modal-form-submit"
+              value="Valider"
+              disabled
+            />
+          </form>
+        </div>
       </div>
-    </div>
-  </dialog>
+    </dialog>
+  </body>
 </html>

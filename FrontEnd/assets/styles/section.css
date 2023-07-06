@@ -57,12 +57,12 @@
   width: 100%;
 }
 
-.section__article {
+.section__introduction {
   width: 50%;
   box-sizing: border-box;
   padding-left: 75px;
 }
-.section__article--edition {
+.section__introduction--edition {
   padding-bottom: 47px;
 }
 
