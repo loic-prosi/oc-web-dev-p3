@@ -29,14 +29,16 @@ const setScripts = async () => {
 
 const setLandingPageScripts = async () => {
   const works = await getAllWorks();
-  createGallery(works);
+  if (works) {
+    createGallery(works);
 
-  const categories = getWorksCategories(works);
-  createFilters(categories, works);
+    const categories = getWorksCategories(works);
+    createFilters(categories, works);
 
-  const authToken = window.localStorage.getItem("architect.authToken");
-  if (authToken) {
-    setAdminState(works, categories);
+    const authToken = window.localStorage.getItem("architect.authToken");
+    if (authToken) {
+      setAdminState(works, categories);
+    }
   }
 };
 

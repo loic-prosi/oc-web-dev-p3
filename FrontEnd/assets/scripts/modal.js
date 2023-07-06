@@ -106,16 +106,9 @@ export const createModalFormEvents = () => {
     const authToken = window.localStorage.getItem("architect.authToken");
 
     if (authToken) {
-      const response = await createWork(formData, authToken);
+      const work = await createWork(formData, authToken);
 
-      if (response) {
-        let work = {
-          category: { id: response.categoryId },
-          id: response.id,
-          imageUrl: response.imageUrl,
-          title: response.title,
-          userId: response.userId
-        };
+      if (work) {
         createGalleryWork(work);
         createModalGalleryWork(work);
         location.replace("#" + "modal-gallery");

@@ -10,47 +10,41 @@ export const setLoginFormEvent = async () => {
       email: event.target.querySelector("[name='email']").value,
       password: event.target.querySelector("[name='password']").value
     };
-    const loginData = await getLoginData(loginCredentials);
 
-    if (loginData) {
-      if (loginData.token) {
-        window.localStorage.setItem("architect.authToken", loginData.token);
-        location.replace("../../index.html");
-      } else {
-        setLoginFormErrors(loginData);
-      }
-    } else {
-      console.error("setLoginFormEvent: loginData is undefined");
+    const { token, error } = await getLoginData(loginCredentials);
+
+    if (token) {
+      window.localStorage.setItem("architect.authToken", token);
+      location.replace("../../index.html");
+    }
+    if (error) {
+      setLoginFormErrors(error);
     }
   });
 };
 
-const setLoginFormErrors = (loginData) => {
+const setLoginFormErrors = (error) => {
   const emailInput = document.querySelector("input[name='email']");
   emailInput.style.outline = "";
-
   const passwordInput = document.querySelector("input[name='password']");
   passwordInput.style.outline = "";
 
   const emailErrorMessage = document.getElementById("email-error");
+  emailErrorMessage.innerText = "";
   const passWordErrorMessage = document.getElementById("password-error");
+  passWordErrorMessage.innerText = "";
 
-  if (loginData.message) {
+  if (error === "email") {
     emailInput.style.outline = "2px solid red";
     emailInput.focus();
 
     emailErrorMessage.innerText = "E-mail incorrect";
-  } else {
-    emailErrorMessage.innerText = "";
   }
-
-  if (loginData.error) {
+  if (error === "password") {
     passwordInput.style.outline = "2px solid red";
     passwordInput.value = "";
     passwordInput.focus();
 
     passWordErrorMessage.innerText = "Mot de passe incorrect";
-  } else {
-    passWordErrorMessage.innerText = "";
   }
 };

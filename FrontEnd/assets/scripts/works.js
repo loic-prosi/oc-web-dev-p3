@@ -63,9 +63,9 @@ export const createModalGalleryWork = (work) => {
   modalWorkDeleteButton.addEventListener("click", async () => {
     const authToken = window.localStorage.getItem("architect.authToken");
     if (authToken) {
-      const response = await deleteWork(work.id, authToken);
+      const isDeleted = await deleteWork(work.id, authToken);
 
-      if (response && response.status && response.status === 204) {
+      if (isDeleted) {
         deleteGalleryWork(work.id);
         deleteModalGalleryWork(work.id);
       }
