@@ -1,9 +1,15 @@
+const protocol = "https";
+const baseAPIUrl = "oc-web-dev-p3.onrender.com";
+
 export const getLoginData = async (loginCredentials) => {
-  const apiResponse = await fetch("http://localhost:5678/api/users/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(loginCredentials)
-  });
+  const apiResponse = await fetch(
+    `${protocol}://${baseAPIUrl}/api/users/login`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginCredentials)
+    }
+  );
   if (apiResponse && apiResponse.status) {
     if (apiResponse.status === 200) {
       const { token } = await apiResponse.json();
@@ -23,11 +29,21 @@ export const getLoginData = async (loginCredentials) => {
 };
 
 export const getAllWorks = async () => {
-  const apiResponse = await fetch("http://localhost:5678/api/works");
+  const apiResponse = await fetch(`${protocol}://${baseAPIUrl}/api/works`);
   if (apiResponse && apiResponse.status) {
     if (apiResponse.status === 200) {
       const works = await apiResponse.json();
-      return works;
+      // Replace default image url to hosting service url
+      const newWorks = works.map((work) => {
+        return {
+          ...work,
+          imageUrl: work.imageUrl.replace(
+            "http://localhost:5678",
+            `${protocol}://${baseAPIUrl}`
+          )
+        };
+      });
+      return newWorks;
     } else {
       console.error("api error");
     }
@@ -37,7 +53,7 @@ export const getAllWorks = async () => {
 };
 
 export const createWork = async (workData, authToken) => {
-  const apiResponse = await fetch("http://localhost:5678/api/works", {
+  const apiResponse = await fetch(`${protocol}://${baseAPIUrl}/api/works`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${authToken}`
@@ -66,13 +82,16 @@ export const createWork = async (workData, authToken) => {
 };
 
 export const deleteWork = async (workId, authToken) => {
-  const apiResponse = await fetch(`http://localhost:5678/api/works/${workId}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${authToken}`
+  const apiResponse = await fetch(
+    `${protocol}://${baseAPIUrl}/api/works/${workId}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`
+      }
     }
-  });
+  );
   if (apiResponse && apiResponse.status) {
     if (apiResponse.status === 204) {
       return true;
